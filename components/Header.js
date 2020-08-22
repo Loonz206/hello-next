@@ -1,14 +1,18 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-const Header = () => {
+const Header = ({ nav }) => {
+  const navRender = nav.map((navItem) => {
+    return (
+      <li key={navItem.title}>
+        <a href={navItem.path}>{navItem.title}</a>
+      </li>
+    );
+  });
   return (
     <header>
       <nav>
-        <ul>
-          <li>Hello</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
+        <ul>{navRender}</ul>
       </nav>
     </header>
   );
