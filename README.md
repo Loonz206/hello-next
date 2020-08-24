@@ -3,7 +3,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Build Status](https://travis-ci.com/Loonz206/hello-next.svg?branch=master)](https://travis-ci.com/Loonz206/hello-next)
 [![codecov](https://codecov.io/gh/Loonz206/hello-next/branch/master/graph/badge.svg)](https://codecov.io/gh/Loonz206/hello-next)
-[![Known Vulnerabilities](https://snyk.io/test/github/Loonz206/hello-next/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Loonz206/hello-next?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/Loonz206/hello-next/badge.svg)](https://snyk.io/test/github/Loonz206/hello-next)
 
 ## hello-next
 
