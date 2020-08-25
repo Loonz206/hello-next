@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
   return (
     <div className="container">
       <Header nav={nav} />
-      <main className="main-content">{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
     </div>
   );

@@ -4,8 +4,8 @@ import "@testing-library/jest-dom";
 
 import Header from "../components/Header";
 
-describe("Header", () => {
-  test("renders Header component", () => {
+describe.only("Header", () => {
+  test("renders Header component with the example nav passed", () => {
     const nav = [{ title: "Bacon", path: "/bacon" }];
     const { getByText } = render(<Header nav={nav} />);
     expect(getByText("Bacon")).toBeInTheDocument();
