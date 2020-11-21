@@ -1,13 +1,24 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-
-import Header from "../components/Header";
+import Header from "../src/components/Header";
 
 describe.only("Header", () => {
   test("renders Header component with the example nav passed", () => {
-    const nav = [{ title: "Bacon", path: "/bacon" }];
-    const { getByText } = render(<Header nav={nav} />);
-    expect(getByText("Bacon")).toBeInTheDocument();
+    const links = [
+      {
+        id: 0,
+        name: "home",
+        path: "/",
+      },
+      {
+        id: 1,
+        name: "about",
+        path: "/about",
+      },
+    ];
+    const { getByText } = render(<Header links={links} />);
+    expect(getByText("home")).toBeInTheDocument();
+    expect(getByText("about")).toBeInTheDocument();
   });
 });

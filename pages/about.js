@@ -4,33 +4,27 @@ import Layout from "../src/components/Layout";
 import { fetchEntries } from "../src/utils/contentfulPosts";
 // import Post from "../src/components/Posts";
 
-const Home = () => {
-  const links = [
-    {
-      id: 0,
-      name: "home",
-      path: "/",
-    },
-    {
-      id: 1,
-      name: "about",
-      path: "/about",
-    },
-  ];
+export default function About() {
   return (
     <>
       <Head>
-        <title>Next Blog | Lenny Peters</title>
+        <title>About | Lenny Peters</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout links={links}>
-        <h1>Hello World</h1>
+      <Layout>
+        <h1>About</h1>
+        <hr />
+        <p>
+          A software engineer with solid experiences in creating attractive,
+          user-driven, responsive websites and applications. My adaptive
+          personality makes it fun for me to jump into various types of teams
+          and support the build from writing code to designing layouts and other
+          graphical elements.
+        </p>
       </Layout>
     </>
   );
-};
-
-export default Home;
+}
 
 export async function getStaticProps() {
   const res = await fetchEntries();
