@@ -16,11 +16,10 @@
     "validate": "npm-run-all --parallel check-format lint"
   },
   "dependencies": {
-    "contentful": "^7.14.14",
-    "next": "9.5.2",
+    "next": "10.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "sass": "^1.26.10"
+    "sass": "^1.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
