@@ -1,4 +1,4 @@
-export const links = [
+const links = [
   {
     name: "about",
     path: "/about",
@@ -10,3 +10,5 @@ export const links = [
     id: 1,
   },
 ];
+
+export { links };

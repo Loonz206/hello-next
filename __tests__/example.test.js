@@ -187,4 +187,8 @@ describe("testing with jest", () => {
       await expect(fetchDataWithError()).rejects.toBe(errorMessage);
     });
   });
+
+  test("should check truth", () => {
+    expect(true).toBe(true);
+  });
 });
