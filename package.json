@@ -16,8 +16,8 @@
     "validate": "npm-run-all --parallel check-format lint"
   },
   "dependencies": {
+    "next": "10.0.4",
     "contentful": "^8.1.5",
-    "next": "10.0.3",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "sass": "^1.32.0"
