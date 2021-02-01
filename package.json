@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "next": "10.0.5",
-    "contentful": "^8.1.5",
+    "contentful": "^8.1.7",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "sass": "^1.32.0"
+    "sass": "^1.32.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
