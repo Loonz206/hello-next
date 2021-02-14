@@ -21,6 +21,7 @@ function HomePage() {
       <Head>
         <title>Next Blog | Lenny Peters</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Hello-Next || Github Project" />
       </Head>
       <Layout links={links}>
         {posts.length > 0
