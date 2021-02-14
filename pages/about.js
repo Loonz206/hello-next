@@ -10,6 +10,10 @@ export default function About() {
       <Head>
         <title>About | Lenny Peters</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="About Page || Hello-Next || Github Project"
+        />
       </Head>
       <Layout>
         <h1>About</h1>
