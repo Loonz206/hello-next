@@ -1,10 +1,12 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
-import { render } from "@testing-library/react";
+import { render, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
+
 import Header from "../src/components/Header";
 
-describe.only("Header", () => {
+describe("Header", () => {
+  afterEach(cleanup);
+
   test("renders Header component with the example nav passed", () => {
     const links = [
       {

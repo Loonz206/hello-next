@@ -13,10 +13,14 @@ const Layout = (props) => {
   // TODO: Move these links to be dynamic instead and fed into LKP
 
   useEffect(() => {
+    let mounted = true;
     const body = document.querySelector("body");
-    if (body && !body.classList.contains("js")) {
-      body.classList.add("js");
+    if (mounted) {
+      if (body && !body.classList.contains("js")) {
+        body.classList.add("js");
+      }
     }
+    return () => (mounted = false);
   }, []);
   return (
     <div className={state === "hello" ? "wrap" : "wrap active"} id="wrap">
