@@ -5,15 +5,19 @@ module.exports = {
     jest: true,
   },
   extends: [
-    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "standard",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
+    "plugin:cypress/recommended",
+    "plugin:security/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 11,
+    ecmaVersion: 12,
     sourceType: "module",
   },
   plugins: ["react"],
