@@ -8,8 +8,8 @@ const Header = (props) => {
 
   const renderLinks = links.map(({ path, name, id }) => (
     <li key={id}>
-      <Link href={path}>
-        <a className="nav-link" activeclassname="active">
+      <Link href={path} passHref>
+        <a className="nav-link" activeclassname="active" href="replace">
           {name}
         </a>
       </Link>
