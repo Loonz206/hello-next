@@ -1,4 +1,4 @@
-describe("opening google", () => {
+describe("opening hello-next locally", () => {
   beforeEach(() => {
     // Load our app before starting each test case
     cy.visit("/");
