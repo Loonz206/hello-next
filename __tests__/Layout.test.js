@@ -1,5 +1,11 @@
 import React from "react";
-import { render, cleanup, act } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  act,
+  screen,
+  fireEvent,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Layout from "../src/components/Layout";
@@ -7,10 +13,21 @@ import Layout from "../src/components/Layout";
 describe("Layout", () => {
   afterEach(cleanup);
 
-  test("renders Layout component and finds the main content class", () => {
+  test("toggles the navigation", () => {
+    // assemble
+    const { getByText, container } = render(<Layout />);
+    expect(getByText("about")).toBeInTheDocument();
+    expect(getByText("contact")).toBeInTheDocument();
+    expect(container.querySelector(".wrap")).toBeInTheDocument();
+
+    // act
     act(() => {
-      const { container } = render(<Layout />);
-      expect(container.querySelector("#wrap")).toBeInTheDocument();
+      global.innerWidth = 600;
+      const link = screen.queryByRole("link", { name: /menu ☰/i });
+      fireEvent.click(link);
     });
+    // assert
+    expect(container.querySelector(".wrap.active")).toBeInTheDocument();
+    // cleanup
   });
 });

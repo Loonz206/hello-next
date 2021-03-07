@@ -3,8 +3,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 const Header = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const { links, handleClick, state } = props;
+  const { links, handleClick, active } = props;
 
   const renderLinks = links.map(({ path, name, id }) => (
     <li key={id}>
@@ -23,7 +22,7 @@ const Header = (props) => {
       </a>
       <a
         href="#menu"
-        className={state === "hello" ? "menu-link" : "menu-link active"}
+        className={active === false ? "menu-link" : "menu-link active"}
         onClick={() => handleClick()}
       >
         Menu &#x2630;
@@ -39,4 +38,6 @@ export default Header;
 
 Header.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  handleClick: PropTypes.func,
+  active: PropTypes.bool,
 };
