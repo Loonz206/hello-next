@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Layout from "../src/components/Layout";
 import { fetchEntries } from "../src/utils/contentfulPosts";
-// import Post from "../src/components/Posts";
 
 export default function About() {
   return (

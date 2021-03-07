@@ -4,13 +4,11 @@ import PropTypes from "prop-types";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Layout = (props) => {
-  const [state, setState] = useState("hello");
+const Layout = ({ children }) => {
+  const [active, setActive] = useState(false);
   const handleClick = () => {
-    return state === "hello" ? setState("boob") : setState("hello");
+    return active === false ? setActive(true) : setActive(false);
   };
-  const { children } = props;
-  // TODO: Move these links to be dynamic instead and fed into LKP
 
   useEffect(() => {
     let mounted = true;
@@ -23,8 +21,8 @@ const Layout = (props) => {
     return () => (mounted = false);
   }, []);
   return (
-    <div className={state === "hello" ? "wrap" : "wrap active"} id="wrap">
-      <Header handleClick={handleClick} state={state} links={links} />
+    <div className={active === false ? "wrap" : "wrap active"} id="wrap">
+      <Header handleClick={handleClick} active={active} links={links} />
       <main id="content">{children}</main>
       <Footer />
     </div>
