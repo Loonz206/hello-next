@@ -20,7 +20,7 @@
     "e2e:open": "start-server-and-test dev http://localhost:3000 cy:open"
   },
   "dependencies": {
-    "next": "10.0.6",
+    "next": "10.0.7",
     "contentful": "^8.1.7",
     "react": "16.14.0",
     "react-dom": "16.14.0",
