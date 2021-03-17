@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { links } from "../utils/links";
 import PropTypes from "prop-types";
 import Header from "../components/Header";
+import PageProfileCard from "../components/PageProfileCard";
 import Footer from "../components/Footer";
 
 const Layout = ({ children }) => {
@@ -23,6 +24,7 @@ const Layout = ({ children }) => {
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
       <Header handleClick={handleClick} active={active} links={links} />
+      <PageProfileCard />
       <main id="content">{children}</main>
       <Footer />
     </div>

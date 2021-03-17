@@ -24,6 +24,10 @@ function HomePage() {
         <meta name="description" content="Hello-Next || Github Project" />
       </Head>
       <Layout links={links}>
+        <h4>
+          {posts.length > 1 ? `${posts.length} Posts` : `${posts.length} Post`}
+        </h4>
+        <hr />
         {posts.length > 0
           ? posts.map((p, index) => (
               <Post
