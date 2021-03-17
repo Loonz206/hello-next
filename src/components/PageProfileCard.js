@@ -1,16 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import Logo from "../assets/logo.svg";
 
 const PageProfileCard = () => {
   return (
     <div className="card-container">
       <Link href="/" passHref>
         <a className="nav-link" activeclassname="active" href="replace">
-          <img
-            className="img-responsive"
-            src="https://placehold.it/350x350"
-            alt="logo"
-          />
+          <Logo className="img-responsive" />
           UX/UI Designer & Front-End Developer
         </a>
       </Link>
