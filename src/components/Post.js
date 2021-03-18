@@ -1,18 +1,20 @@
 import React from "react";
+import Link from "next/link";
 
 // eslint-disable-next-line react/prop-types
-const Post = ({ date, title, description }) => {
+const Post = ({ date, title, description, urlName }) => {
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
-
   return (
-    <div className="container">
-      <div className="text">
-        <h2>{title}</h2>
-        <h4>{dateString}</h4>
-        <p>{description}</p>
-      </div>
-    </div>
+    <article className="container">
+      <Link href={urlName} passHref>
+        <a className="nav-link" activeclassname="active" href="replace">
+          <h3>{title}</h3>
+          <small>{dateString}</small>
+          <p>{description}</p>
+        </a>
+      </Link>
+    </article>
   );
 };
 

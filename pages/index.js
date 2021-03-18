@@ -35,6 +35,7 @@ function HomePage() {
                 date={p.fields.date}
                 title={p.fields.title}
                 description={p.fields.description}
+                urlName={p.fields.urlName}
               />
             ))
           : null}
