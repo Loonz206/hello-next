@@ -1,53 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useRouter } from "next/router";
-import ErrorPage from "next/error";
 import Layout from "../../src/components/Layout";
-
-import {
-  getPostBySlug,
-  getMorePosts,
-  getAllPostsWithSlug,
-} from "../../src/utils/contentfulPosts";
+import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
-  const router = useRouter();
-  if (!router.isFallback && !post) {
-    return <ErrorPage statusCode={404} />;
-  }
-
-  return <Layout>{post?.fields.title}</Layout>;
+  const newDate = new Date(post.fields.date).toUTCString();
+  const dateString = newDate.split(" ").slice(0, 4).join(" ");
+  return (
+    <Layout>
+      <h3>{post.fields.title}</h3>
+      <small>{dateString} | Lenny Peters</small>
+      <p>{post.fields.description}</p>
+    </Layout>
+  );
 };
 
 export default Post;
 
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+  const post = await getPostBySlug(slug);
+
+  return {
+    props: { post },
+  };
+}
+
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug();
+  const res = await getAllPosts();
+  const posts = await res.map((p) => {
+    return p.fields;
+  });
+
   return {
-    paths: allPosts?.map(({ slug }) => `/blog/${slug}`) ?? [],
-    fallback: true,
+    paths: posts.map(({ slug }) => {
+      return {
+        params: {
+          slug,
+        },
+      };
+    }),
+    fallback: false,
   };
 }
-
-export async function getStaticProps({ params }) {
-  const post = await getPostBySlug(params.slug);
-  const morePosts = await getMorePosts(params.slug);
-  return {
-    props: {
-      post: post || null,
-      morePosts: morePosts || null,
-    },
-    revalidate: 1,
-  };
-}
-
-// export async function getStaticPaths() {
-//   // Return a list of possible value for id
-// }
-
-// export async function getStaticProps({ params }) {
-//   // Fetch necessary data for the blog post using params.id
-// }
 
 Post.propTypes = {
   post: PropTypes.shape(),

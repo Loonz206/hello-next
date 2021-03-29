@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 
-const PostList = ({ date, title, description, slug, author }) => {
+const PostList = ({ date, title, description, slug }) => {
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
@@ -10,9 +10,7 @@ const PostList = ({ date, title, description, slug, author }) => {
       <Link href={`/blog/${slug}`} passHref>
         <a className="nav-link" activeclassname="active" href="replace">
           <h3>{title}</h3>
-          <small>
-            {dateString} | {author}
-          </small>
+          <small>{dateString} | Lenny Peters</small>
           <p>{description}</p>
         </a>
       </Link>
