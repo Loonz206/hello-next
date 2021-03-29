@@ -1,9 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Layout from "../src/components/Layout";
-import { fetchEntries } from "../src/utils/contentfulPosts";
 
-export default function About() {
+const About = () => {
   return (
     <>
       <Head>
@@ -27,17 +26,6 @@ export default function About() {
       </Layout>
     </>
   );
-}
+};
 
-export async function getStaticProps() {
-  const res = await fetchEntries();
-  const posts = await res.map((p) => {
-    return p.fields;
-  });
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+export default About;

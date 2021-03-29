@@ -24,14 +24,15 @@ const Layout = ({ children }) => {
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
       <Header handleClick={handleClick} active={active} links={links} />
-      <PageProfileCard />
+      <PageProfileCard
+        jobRole="Software Engineer & Internet Lover"
+        twitterHandle="@loonz206"
+      />
       <main id="content">{children}</main>
       <Footer />
     </div>
   );
 };
-
-export default Layout;
 
 Layout.defaultProps = {
   children: [],
@@ -40,3 +41,5 @@ Layout.defaultProps = {
 Layout.propTypes = {
   children: PropTypes.node,
 };
+
+export default Layout;

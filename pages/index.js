@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
+import PropTypes from "prop-types";
 import Layout from "../src/components/Layout";
-import Post from "../src/components/Post";
+import PostList from "../src/components/PostList";
 import { links } from "../src/utils/links";
-import { fetchEntries } from "../src/utils/contentfulPosts";
+import { getAllPosts } from "../src/utils/contentfulPosts";
 
-function HomePage() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function getPosts() {
-      const allPosts = await fetchEntries();
-      setPosts([...allPosts]);
-    }
-    getPosts();
-  }, []);
-
+const HomePage = ({ posts }) => {
   return (
     <>
       <Head>
@@ -29,19 +20,40 @@ function HomePage() {
         </h4>
         <hr />
         {posts.length > 0
-          ? posts.map((p, index) => (
-              <Post
-                key={index}
-                date={p.fields.date}
-                title={p.fields.title}
-                description={p.fields.description}
-                urlName={p.fields.urlName}
-              />
-            ))
+          ? posts.map(
+              ({ date, title, description, urlName, author, slug }, index) => (
+                <PostList
+                  key={index}
+                  date={date}
+                  title={title}
+                  description={description}
+                  urlName={urlName}
+                  author={author}
+                  slug={slug}
+                />
+              )
+            )
           : null}
       </Layout>
     </>
   );
-}
+};
 
 export default HomePage;
+
+export async function getStaticProps() {
+  const res = await getAllPosts();
+  const posts = await res.map((p) => {
+    return p.fields;
+  });
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+HomePage.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape),
+};

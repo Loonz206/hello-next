@@ -1,3 +1,4 @@
+// Static Generated Pages, non-dynamic generated
 const links = [
   {
     name: "about",

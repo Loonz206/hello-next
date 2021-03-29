@@ -34,10 +34,10 @@ const Header = (props) => {
   );
 };
 
-export default Header;
-
 Header.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   handleClick: PropTypes.func,
   active: PropTypes.bool,
 };
+
+export default Header;
