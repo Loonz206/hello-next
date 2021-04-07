@@ -20,6 +20,7 @@
     "e2e:open": "start-server-and-test dev http://localhost:3000 cy:open"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^14.1.2",
     "contentful": "^8.2.0",
     "next": "10.0.8",
     "next-images": "^1.7.0",

@@ -1,16 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Layout from "../../src/components/Layout";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
-  const newDate = new Date(post.fields.date).toUTCString();
+  const { title, content, date } = post.fields;
+  console.log("content", content);
+  const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
     <Layout>
-      <h3>{post.fields.title}</h3>
+      <h3>{title}</h3>
       <small>{dateString} | Lenny Peters</small>
-      <p>{post.fields.description}</p>
+      {documentToReactComponents(content)}
     </Layout>
   );
 };
@@ -45,5 +48,5 @@ export async function getStaticPaths() {
 }
 
 Post.propTypes = {
-  post: PropTypes.shape(),
+  post: PropTypes.arrayOf(),
 };
