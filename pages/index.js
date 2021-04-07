@@ -44,6 +44,12 @@ export async function getStaticProps() {
     return p.fields;
   });
 
+  if (!posts) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       posts,
