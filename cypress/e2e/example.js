@@ -16,9 +16,6 @@ describe("opening hello-next locally", () => {
 
   it("should have a headline", () => {
     cy.findByRole("heading", { name: /i think it's working!!/i });
-    // cy.findByText(
-    //   "By god.. I think it's working. Next I need to make a post page.."
-    // );
   });
 
   it("should have a footer", () => {

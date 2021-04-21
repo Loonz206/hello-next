@@ -20,5 +20,4 @@ const Custom404 = () => {
 
 export default Custom404;
 
-// TODO: If you need to fetch some data
 // export async function getStaticProps() {}
