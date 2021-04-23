@@ -58,6 +58,14 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           projectBaseDir: ./
+          args: >
+            -Dsonar.organization=loonz206
+            -Dsonar.projectKey=Loonz206_hello-next
+            -Dsonar.javascript.lcov.reportPaths=coverage/Icov.info
+            -Dsonar.sources=./src
+            -Dsonar.test.exclusions=./src/**/*.test.js
+            -Dsonar.tests=./src/__tests__
+            -Dsonar.verbose=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
