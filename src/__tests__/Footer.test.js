@@ -2,7 +2,7 @@ import React from "react";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 
 describe("Footer Component", () => {
   test("should have the copyright in the footer", () => {
