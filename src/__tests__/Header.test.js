@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Header from "../src/components/Header";
+import Header from "../components/Header";
 
 describe("Header", () => {
   afterEach(cleanup);

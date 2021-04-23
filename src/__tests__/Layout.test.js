@@ -8,7 +8,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Layout from "../src/components/Layout";
+import Layout from "../components/Layout";
 
 describe("Layout", () => {
   afterEach(cleanup);

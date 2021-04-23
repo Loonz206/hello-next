@@ -15,7 +15,7 @@ module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
   // The directory where Jest should output its coverage files
-  // coverageDirectory: undefined,
+  coverageDirectory: "./coverage/",
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
@@ -23,12 +23,7 @@ module.exports = {
   // Indicates which provider should be used to instrument code for coverage
   // coverageProvider: "babel",
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: ["json", "text", "lcov", "text-summary", "clover"],
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
   // A path to a custom dependency extractor
@@ -71,16 +66,7 @@ module.exports = {
   // Run tests from one or more projects
   // projects: undefined,
   // Use this configuration option to add custom reporters to Jest
-  reporters: [
-    "default",
-    [
-      "jest-sonar",
-      {
-        outputName: "sonar-report.xml",
-        reportedFilePath: "absolute",
-      },
-    ],
-  ],
+  // reporters: ["default"],
   // Automatically reset mock state between every test
   // resetMocks: false,
   // Reset the module registry before running each individual test
@@ -123,8 +109,7 @@ module.exports = {
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
   // This option allows the use of a custom results processor
-  // testResultsProcessor: undefined,
-  // This option allows use of a custom test runner
+  testResultsProcessor: "jest-sonar-reporter",
   // testRunner: "jasmine2",
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   // testURL: "http://localhost",
