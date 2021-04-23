@@ -15,7 +15,7 @@ module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
   // The directory where Jest should output its coverage files
-  // coverageDirectory: undefined,
+  coverageDirectory: "./coverage/",
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
@@ -71,16 +71,7 @@ module.exports = {
   // Run tests from one or more projects
   // projects: undefined,
   // Use this configuration option to add custom reporters to Jest
-  reporters: [
-    "default",
-    [
-      "jest-sonar",
-      {
-        outputName: "sonar-report.xml",
-        reportedFilePath: "absolute",
-      },
-    ],
-  ],
+  // reporters: ["default"],
   // Automatically reset mock state between every test
   // resetMocks: false,
   // Reset the module registry before running each individual test
@@ -123,7 +114,7 @@ module.exports = {
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
   // This option allows the use of a custom results processor
-  testResultsProcessor: "jest-sonar-reporter", // This option allows use of a custom test runner
+  testResultsProcessor: "jest-sonar-reporter",
   // testRunner: "jasmine2",
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   // testURL: "http://localhost",

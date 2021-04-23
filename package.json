@@ -59,18 +59,12 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
     "jest": "^26.4.1",
-    "jest-sonar": "^0.2.12",
     "jest-sonar-reporter": "^2.0.0",
     "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "regenerator-runtime": "^0.13.7",
     "start-server-and-test": "^1.12.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageDirectory": "./coverage/",
-    "testResultsProcessor": "jest-sonar-reporter"
   },
   "jestSonar": {
     "reportPath": "./coverage/",
