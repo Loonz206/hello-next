@@ -123,8 +123,7 @@ module.exports = {
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
   // This option allows the use of a custom results processor
-  // testResultsProcessor: undefined,
-  // This option allows use of a custom test runner
+  testResultsProcessor: "jest-sonar-reporter", // This option allows use of a custom test runner
   // testRunner: "jasmine2",
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   // testURL: "http://localhost",

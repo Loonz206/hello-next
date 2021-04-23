@@ -60,6 +60,7 @@
     "husky": "^4.2.5",
     "jest": "^26.4.1",
     "jest-sonar": "^0.2.12",
+    "jest-sonar-reporter": "^2.0.0",
     "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
@@ -67,7 +68,12 @@
     "start-server-and-test": "^1.12.0"
   },
   "jest": {
+    "collectCoverage": true,
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jestSonar": {
+    "reportPath": "./coverage/",
+    "reportFile": "test-reporter.xml"
   }
 }
