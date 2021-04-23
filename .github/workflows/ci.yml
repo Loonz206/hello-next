@@ -63,8 +63,7 @@ jobs:
             -Dsonar.projectKey=Loonz206_hello-next
             -Dsonar.javascript.lcov.reportPaths=coverage/Icov.info
             -Dsonar.sources=./src
-            -Dsonar.test.exclusions=./src/**/*.test.js
-            -Dsonar.tests=./src/__tests__
+            -Dsonar.test.exclusions=**/*.test.js
             -Dsonar.verbose=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
