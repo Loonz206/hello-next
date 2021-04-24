@@ -15,7 +15,7 @@ module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
   // The directory where Jest should output its coverage files
-  coverageDirectory: "./coverage/",
+  coverageDirectory: "coverage",
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
@@ -66,7 +66,17 @@ module.exports = {
   // Run tests from one or more projects
   // projects: undefined,
   // Use this configuration option to add custom reporters to Jest
-  // reporters: ["default"],
+  reporters: [
+    "default",
+    [
+      "jest-sonar",
+      {
+        outputDirectory: "coverage",
+        outputName: "jest-sonar.xml",
+        reportedFilePath: "absolute",
+      },
+    ],
+  ],
   // Automatically reset mock state between every test
   // resetMocks: false,
   // Reset the module registry before running each individual test
