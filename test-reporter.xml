@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/lenny/Projects/hello-next/src/__tests__/Footer.test.js">
-    <testCase name="Footer Component should have the copyright in the footer" duration="31"/>
-  </file>
   <file path="/Users/lenny/Projects/hello-next/src/__tests__/NewComponents.test.js">
-    <testCase name="Header renders Header component with the example nav passed" duration="28"/>
+    <testCase name="Header renders Header component with the example nav passed" duration="29"/>
   </file>
   <file path="/Users/lenny/Projects/hello-next/src/__tests__/Header.test.js">
-    <testCase name="Header renders Header component with the example nav passed" duration="41"/>
+    <testCase name="Header renders Header component with the example nav passed" duration="38"/>
+  </file>
+  <file path="/Users/lenny/Projects/hello-next/src/__tests__/Footer.test.js">
+    <testCase name="Footer Component should have the copyright in the footer" duration="29"/>
   </file>
   <file path="/Users/lenny/Projects/hello-next/src/__tests__/Layout.test.js">
-    <testCase name="Layout toggles the navigation" duration="159"/>
+    <testCase name="Layout toggles the navigation" duration="173"/>
   </file>
   <file path="/Users/lenny/Projects/hello-next/src/__tests__/example.test.js">
-    <testCase name="sum function should add two numbers together" duration="3"/>
+    <testCase name="sum function should add two numbers together" duration="2"/>
     <testCase name="testing with jest matchers object assignment" duration="0"/>
-    <testCase name="testing with jest matchers adding positive numbers is not zero" duration="12"/>
+    <testCase name="testing with jest matchers adding positive numbers is not zero" duration="11"/>
     <testCase name="testing with jest truthiness null" duration="1"/>
-    <testCase name="testing with jest truthiness zero" duration="1"/>
-    <testCase name="testing with jest numbers two plus two" duration="1"/>
-    <testCase name="testing with jest numbers adding floating point numbers" duration="0"/>
-    <testCase name="testing with jest strings there is no I in team" duration="1"/>
+    <testCase name="testing with jest truthiness zero" duration="0"/>
+    <testCase name="testing with jest numbers two plus two" duration="0"/>
+    <testCase name="testing with jest numbers adding floating point numbers" duration="1"/>
+    <testCase name="testing with jest strings there is no I in team" duration="0"/>
     <testCase name="testing with jest strings but there is a &quot;stop&quot; in Christoph" duration="0"/>
-    <testCase name="testing with jest arrays and iterables the shopping list has beer on it" duration="0"/>
-    <testCase name="testing with jest exceptions compiling android goes as expected" duration="8"/>
-    <testCase name="testing with jest callbacks the data is peanut butter" duration="104"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter, then" duration="101"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error, catch" duration="101"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter, resolves" duration="104"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error, rejects" duration="99"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter" duration="102"/>
+    <testCase name="testing with jest arrays and iterables the shopping list has beer on it" duration="1"/>
+    <testCase name="testing with jest exceptions compiling android goes as expected" duration="2"/>
+    <testCase name="testing with jest callbacks the data is peanut butter" duration="106"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter, then" duration="104"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error, catch" duration="100"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter, resolves" duration="106"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error, rejects" duration="104"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter" duration="104"/>
     <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error" duration="103"/>
-    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter" duration="105"/>
+    <testCase name="testing with jest promises/resolve/reject/catch/async/await the data is peanut butter" duration="103"/>
     <testCase name="testing with jest promises/resolve/reject/catch/async/await the fetch fails with an error" duration="102"/>
     <testCase name="testing with jest should check truth" duration="1"/>
   </file>
