@@ -66,7 +66,17 @@ module.exports = {
   // Run tests from one or more projects
   // projects: undefined,
   // Use this configuration option to add custom reporters to Jest
-  // reporters: ["default"],
+  reporters: [
+    "default",
+    [
+      "jest-sonar",
+      {
+        outputDirectory: "coverage",
+        outputName: "jest-sonar.xml",
+        reportedFilePath: "absolute",
+      },
+    ],
+  ],
   // Automatically reset mock state between every test
   // resetMocks: false,
   // Reset the module registry before running each individual test
