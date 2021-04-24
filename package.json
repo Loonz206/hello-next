@@ -67,7 +67,7 @@
     "start-server-and-test": "^1.12.0"
   },
   "jestSonar": {
-    "reportPath": "./coverage/",
+    "reportPath": "coverage",
     "reportFile": "test-reporter.xml"
   }
 }
