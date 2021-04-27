@@ -50,14 +50,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run coverage
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: docker://sonarsource/sonar-scanner-cli:latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
   e2e:
     runs-on: ubuntu-latest
     strategy:
