@@ -2,11 +2,13 @@ const sum = (a, b) => {
   return a + b;
 };
 
-describe("sum function", () => {
-  test("should add two numbers together", () => {
-    expect(sum(1, 3)).toEqual(4);
-  });
-});
+export { sum };
+
+// describe("sum function", () => {
+//   test("should add two numbers together", () => {
+//     expect(sum(1, 3)).toEqual(4);
+//   });
+// });
 
 describe("testing with jest", () => {
   describe("matchers", () => {
