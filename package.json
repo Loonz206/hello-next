@@ -66,9 +66,5 @@
     "prettier": "^2.0.5",
     "regenerator-runtime": "^0.13.7",
     "start-server-and-test": "^1.12.0"
-  },
-  "jestSonar": {
-    "reportPath": "coverage",
-    "reportFile": "test-reporter.xml"
   }
 }
