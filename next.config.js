@@ -7,6 +7,10 @@ module.exports = withImages({
 });
 
 module.exports = {
+  // put the domains where images will be placed
+  images: {
+    domains: ["place-hold.it"],
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },

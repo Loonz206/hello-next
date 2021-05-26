@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import Image from "next/image";
 
 const PostList = ({ date, title, description, slug }) => {
   const newDate = new Date(date).toUTCString();
@@ -11,7 +12,7 @@ const PostList = ({ date, title, description, slug }) => {
         <a className="nav-link" activeclassname="active" href="replace">
           <h3>{title}</h3>
           <small>{dateString} | Lenny Peters</small>
-          <p>{description}</p>
+          <Image src="https://place-hold.it/720x405" width={720} height={405} />
         </a>
       </Link>
     </article>
@@ -23,7 +24,7 @@ PostList.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   slug: PropTypes.string,
-  author: PropTypes.string,
+  author: PropTypes.shape(),
 };
 
 export default PostList;
