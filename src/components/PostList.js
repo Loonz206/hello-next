@@ -12,7 +12,12 @@ const PostList = ({ date, title, description, slug }) => {
         <a className="nav-link" activeclassname="active" href="replace">
           <h3>{title}</h3>
           <small>{dateString} | Lenny Peters</small>
-          <Image src="https://place-hold.it/720x405" width={720} height={405} />
+          <Image
+            src="https://place-hold.it/720x405"
+            width={720}
+            height={405}
+            alt="a grey frame"
+          />
         </a>
       </Link>
     </article>
