@@ -3,9 +3,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![Github Actions CI](https://github.com/Loonz206/hello-next/workflows/Github%20Actions%20CI/badge.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/Loonz206/hello-next/badge.svg)](https://snyk.io/test/github/Loonz206/hello-next)
-
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=Loonz206_hello-next)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Loonz206_hello-next&metric=alert_status)](https://sonarcloud.io/dashboard?id=Loonz206_hello-next)
 ## hello-next
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
