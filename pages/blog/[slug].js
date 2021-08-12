@@ -48,5 +48,5 @@ export async function getStaticPaths() {
 }
 
 Post.propTypes = {
-  post: PropTypes.arrayOf(),
+  post: PropTypes.shape(),
 };
