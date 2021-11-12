@@ -12,6 +12,7 @@ module.exports = {
     "plugin:cypress/recommended",
     "plugin:security/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:sonarjs/recommended",
     "next",
   ],
   parserOptions: {
@@ -21,7 +22,15 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: [
+    "react",
+    "sonarjs",
+    "prettier",
+    "cypress",
+    "security",
+    "jsx-a11y",
+    "react-hooks",
+  ],
   rules: {},
   settings: {
     react: {

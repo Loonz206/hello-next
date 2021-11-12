@@ -14,10 +14,8 @@ const Layout = ({ children }) => {
   useEffect(() => {
     let mounted = true;
     const body = document.querySelector("body");
-    if (mounted) {
-      if (body && !body.classList.contains("js")) {
-        body.classList.add("js");
-      }
+    if (mounted && body && !body.classList.contains("js")) {
+      body.classList.add("js");
     }
     return () => (mounted = false);
   }, []);
