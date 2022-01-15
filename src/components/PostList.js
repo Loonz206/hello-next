@@ -3,7 +3,8 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import Image from "next/image";
 
-const PostList = ({ date, title, description, slug }) => {
+const PostList = ({ date, title, description, slug, imageCover }) => {
+  console.log("imageCover", imageCover);
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
@@ -13,7 +14,7 @@ const PostList = ({ date, title, description, slug }) => {
           <h3>{title}</h3>
           <small>{dateString} | Lenny Peters</small>
           <Image
-            src="https://place-hold.it/720x405"
+            src={imageCover || "https://place-hold.it/720x405"}
             width={720}
             height={405}
             alt="a grey frame"

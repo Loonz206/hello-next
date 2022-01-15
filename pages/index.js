@@ -20,16 +20,22 @@ const HomePage = ({ posts }) => {
         </h4>
         <hr />
         {posts.length > 0
-          ? posts.map(({ date, title, description, author, slug }, index) => (
-              <PostList
-                key={index}
-                date={date}
-                title={title}
-                description={description}
-                author={author}
-                slug={slug}
-              />
-            ))
+          ? posts.map(
+              (
+                { date, title, description, author, slug, imageCover },
+                index
+              ) => (
+                <PostList
+                  key={index}
+                  date={date}
+                  title={title}
+                  description={description}
+                  author={author}
+                  slug={slug}
+                  imageCover={imageCover}
+                />
+              )
+            )
           : null}
       </Layout>
     </>

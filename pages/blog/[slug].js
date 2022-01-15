@@ -5,6 +5,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
+  console.log("post", post);
   const { title, content, date } = post.fields;
   console.log("content", content);
   const newDate = new Date(date).toUTCString();
