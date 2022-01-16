@@ -19,7 +19,7 @@ describe("opening hello-next locally", () => {
   });
 
   it("should have a footer", () => {
-    cy.findByText("Next Blog | Copyright 2020-2021");
+    cy.findByText("Next Blog | Copyright 2020-2022");
   });
 
   it("should take me to the about view", () => {
