@@ -3,7 +3,7 @@ on:
   # a pull request.
   push:
     branches:
-      - master
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 name: Main Workflow
@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get master
-        run: git fetch origin master
+        run: git fetch origin main
       - name: Install dependencies
         run: npm install
       - name: Install Jest globally
