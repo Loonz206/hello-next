@@ -1,20 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "next/image";
 import Layout from "../../src/components/Layout";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+// import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
   console.log("post", post);
-  const { title, content, date } = post.fields;
-  console.log("content", content);
+  const { title, date } = post.fields;
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
     <Layout>
       <h3>{title}</h3>
       <small>{dateString} | Lenny Peters</small>
-      {documentToReactComponents(content)}
+      <Image
+        layout="intrinsic"
+        src={post.fields.imageCover || "https://place-hold.it/720x405"}
+        width={720}
+        height={405}
+        alt="a grey frame"
+      />
     </Layout>
   );
 };

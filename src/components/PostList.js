@@ -8,12 +8,13 @@ const PostList = ({ date, title, description, slug, imageCover }) => {
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
-    <article className="container">
+    <article>
       <Link href={`/blog/${slug}`} passHref>
         <a className="nav-link" activeclassname="active" href="replace">
           <h3>{title}</h3>
           <small>{dateString} | Lenny Peters</small>
           <Image
+            layout="intrinsic"
             src={imageCover || "https://place-hold.it/720x405"}
             width={720}
             height={405}

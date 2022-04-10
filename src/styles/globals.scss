@@ -116,6 +116,12 @@ nav[role=navigation] li a {
   margin: 80px auto;
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media screen and (min-width: 41.25em) {
   a.menu-link {
     display: none;

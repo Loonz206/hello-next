@@ -114,6 +114,12 @@ a {
   }
 }
 
+a {
+  img {
+    border-bottom: none;
+  }
+}
+
 // screen reader only -->>
 .sr-only {
   position: absolute;
