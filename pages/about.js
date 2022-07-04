@@ -1,8 +1,12 @@
 import React from "react";
 import Head from "next/head";
+import PropTypes from "prop-types";
 import Layout from "../src/components/Layout";
+import { getAllCards } from "../src/utils/contentfulPosts";
 
-const About = () => {
+const About = ({ cards }) => {
+  const { headline } = cards[0].fields;
+  const { detail } = cards[0].fields;
   return (
     <>
       <Head>
@@ -14,6 +18,8 @@ const About = () => {
         />
       </Head>
       <Layout>
+        <h1>{headline}</h1>
+        <p>{detail}</p>
         <h1>About</h1>
         <hr />
         <p>
@@ -26,6 +32,27 @@ const About = () => {
       </Layout>
     </>
   );
+};
+
+export async function getStaticProps() {
+  const res = await getAllCards();
+  const cards = await res;
+
+  if (!cards) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      cards,
+    },
+  };
+}
+
+About.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape),
 };
 
 export default About;

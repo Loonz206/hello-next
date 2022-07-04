@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, createContext } from "react";
 import PropTypes from "prop-types";
 // Some global styles but then afterward css module pattern instead
 import "../src/styles/globals.scss";
+
+export const PageContext = createContext("");
 
 const App = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -10,7 +12,11 @@ const App = ({ Component, pageProps }) => {
       body.classList.add("js");
     }
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <PageContext.Provider value={pageProps.pageContext}>
+      <Component {...pageProps} />
+    </PageContext.Provider>
+  );
 };
 
 export default App;

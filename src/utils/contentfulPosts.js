@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import { createClient } from "contentful";
 
 const client = createClient({
@@ -7,54 +6,77 @@ const client = createClient({
 });
 
 export async function getAllPosts() {
-  const entries = await client.getEntries({
-    // get data if the contentType matches post
-    content_type: "post",
+  try {
+    const entries = await client.getEntries({
+      // get data if the contentType matches post
+      content_type: "post",
 
-    // order results
-    order: "-fields.date",
-  });
-  if (entries.items) {
-    return entries.items;
+      // order results
+      order: "-fields.date",
+    });
+    if (entries.items) {
+      return entries.items;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.log(`Error getting Entries for ${contentType.name}.`, error);
   }
-  // eslint-disable-next-line no-undef
-  console.log(`Error getting Entries for ${contentType.name}.`);
+}
+
+export async function getAllCards() {
+  try {
+    const entries = await client.getEntries({
+      content_type: "card",
+    });
+    if (entries.items) {
+      return entries.items;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.log(`Error getting Entries for ${contentType.name}.`, error);
+  }
 }
 
 // get a post by slug
 export async function getPostBySlug(slug) {
-  const entries = await client.getEntries({
-    content_type: "post",
+  try {
+    const entries = await client.getEntries({
+      content_type: "post",
 
-    // number of getting data
-    limit: 1,
+      // number of getting data
+      limit: 1,
 
-    // filtering getting post by slug
-    "fields.slug[in]": slug,
-  });
-  if (entries.items) {
-    return entries.items[0];
+      // filtering getting post by slug
+      "fields.slug[in]": slug,
+    });
+    if (entries.items) {
+      return entries.items[0];
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.log(`Error getting Entries for ${contentType.name}.`, error);
   }
-  // eslint-disable-next-line no-undef
-  console.log(`Error getting Entries for ${contentType.name}.`);
 }
 
 // get 3 latest posts
 export async function getMorePosts(slug) {
-  const entries = await client.getEntries({
-    content_type: "post",
-    limit: 3,
-    order: "-fields.date",
+  try {
+    const entries = await client.getEntries({
+      content_type: "post",
+      limit: 3,
+      order: "-fields.date",
 
-    // filtering getting post by slug
-    "fields.slug[nin]": slug,
-  });
+      // filtering getting post by slug
+      "fields.slug[nin]": slug,
+    });
 
-  if (entries.items) {
-    return entries.items;
+    if (entries.items) {
+      return entries.items;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.log(`Error getting Entries for ${contentType.name}.`, error);
   }
-  // eslint-disable-next-line no-undef
-  console.log(`Error getting Entries for ${contentType.name}.`);
 }
 
 function parsePostSlug({ fields }) {
@@ -69,11 +91,16 @@ function parsePostSlugEntries(entries, cb = parsePostSlug) {
 
 // get all existing URL
 export async function getAllPostsWithSlug() {
-  const entries = await client.getEntries({
-    content_type: "post",
+  try {
+    const entries = await client.getEntries({
+      content_type: "post",
 
-    // getting value of slug
-    select: "fields.slug",
-  });
-  return parsePostSlugEntries(entries, (post) => post.fields);
+      // getting value of slug
+      select: "fields.slug",
+    });
+    return parsePostSlugEntries(entries, (post) => post.fields);
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.log(`Error getting Entries for ${contentType.name}.`, error);
+  }
 }
