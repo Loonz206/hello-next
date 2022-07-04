@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 
 const PostList = ({ date, title, description, slug, imageCover }) => {
-  console.log("imageCover", imageCover);
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (

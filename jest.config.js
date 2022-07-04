@@ -1,7 +1,22 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
+// jest.config.js
+const nextJest = require("next/jest");
 
-module.exports = {
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: "./",
+});
+
+// Add any custom config to be passed to Jest
+const customJestConfig = {
+  // Add more setup options before each test is run
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
+  moduleDirectories: ["node_modules", "<rootDir>/"],
+  testEnvironment: "jest-environment-jsdom",
+  rootDir: "./",
+
   // All imported modules in your tests should be mocked automatically
   // automock: false,
   // Stop running tests after `n` failures
@@ -102,9 +117,8 @@ module.exports = {
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-jsdom",
   // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {},
+  testEnvironmentOptions: {},
   // Adds a location field to test results
   // testLocationInResults: false,
   // The glob patterns Jest uses to detect test files
@@ -141,3 +155,5 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+module.exports = createJestConfig(customJestConfig);
