@@ -15,9 +15,9 @@ const HomePage = ({ posts }) => {
         <meta name="description" content="Hello-Next || Github Project" />
       </Head>
       <Layout links={links}>
-        <h4>
+        <h1>
           {posts.length > 1 ? `${posts.length} Posts` : `${posts.length} Post`}
-        </h4>
+        </h1>
         <hr />
         {posts.length > 0
           ? posts.map(
