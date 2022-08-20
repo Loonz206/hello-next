@@ -45,17 +45,14 @@ describe("opening hello-next locally", () => {
     cy.get("#menu").should("exist");
     cy.findByRole("link", { name: /about/i });
     cy.findByRole("link", { name: /contact/i });
-    cy.checkA11y(null, null, terminalLog);
   });
 
   it("should have a headline", () => {
     cy.findByRole("heading", { name: /i think it's working!!/i });
-    cy.checkA11y(null, null, terminalLog);
   });
 
   it("should have a footer", () => {
     cy.findByText("Next Blog | Copyright 2020-2022");
-    cy.checkA11y(null, null, terminalLog);
   });
 
   it("should take me to the about view", () => {
@@ -70,6 +67,5 @@ describe("opening hello-next locally", () => {
   it("should take me to the 404 page", () => {
     cy.findByRole("link", { name: /contact/i }).click();
     cy.findByRole("heading", { name: /404/i });
-    cy.checkA11y(null, null, terminalLog);
   });
 });
