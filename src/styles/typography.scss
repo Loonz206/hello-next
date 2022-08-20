@@ -100,17 +100,17 @@ blockquote p {
 }
 
 a {
-  color: $primaryColor;
+  color: $darkPrimaryColor;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    border-bottom: 1px solid $primaryColor;
+    border-bottom: 1px solid $darkPrimaryColor;
   }
 
   &:active {
     color: white;
-    background-color: $primaryColor;
+    background-color: $darkPrimaryColor;
   }
 }
 

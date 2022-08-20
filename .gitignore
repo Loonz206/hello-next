@@ -15,6 +15,8 @@ test-report.xml
 
 # production
 /build
+/cypress/screenshots
+.vscode
 
 # misc
 .DS_Store

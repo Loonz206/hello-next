@@ -22,11 +22,15 @@ const Layout = ({ children }) => {
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
       <Header handleClick={handleClick} active={active} links={links} />
-      <PageProfileCard
-        jobRole="Software Engineer & Internet Lover"
-        twitterHandle="@loonz206"
-      />
-      <main id="content">{children}</main>
+      <main id="content">
+        <>
+          <PageProfileCard
+            jobRole="Software Engineer & Internet Lover"
+            twitterHandle="@loonz206"
+          />
+          {children}
+        </>
+      </main>
       <Footer />
     </div>
   );

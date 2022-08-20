@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Layout from "../../src/components/Layout";
-// import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
@@ -12,7 +11,7 @@ const Post = ({ post }) => {
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
     <Layout>
-      <h3>{title}</h3>
+      <h1>{title}</h1>
       <small>{dateString} | Lenny Peters</small>
       <Image
         layout="intrinsic"

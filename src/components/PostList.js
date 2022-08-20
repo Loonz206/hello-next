@@ -10,7 +10,7 @@ const PostList = ({ date, title, description, slug, imageCover }) => {
     <article>
       <Link href={`/blog/${slug}`} passHref>
         <a className="nav-link" activeclassname="active" href="replace">
-          <h3>{title}</h3>
+          <h2>{title}</h2>
           <small>{dateString} | Lenny Peters</small>
           <Image
             layout="intrinsic"

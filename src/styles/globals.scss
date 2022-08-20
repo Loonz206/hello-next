@@ -71,7 +71,7 @@ a.menu-link {
 }
 
 nav[role=navigation] {
-  background: $primaryColor;
+  background: $darkPrimaryColor;
   clear: both;
   overflow: hidden;
 }
@@ -156,6 +156,7 @@ nav[role=navigation] li a {
 // card-container
 .card-container {
   text-align: center;
+  background-color: $white;
   margin: 20px auto;
   max-width: 320px;
   clear: both;
