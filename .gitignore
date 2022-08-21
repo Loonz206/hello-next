@@ -17,6 +17,7 @@ test-report.xml
 /build
 /cypress/screenshots
 .vscode
+.lighthouse
 
 # misc
 .DS_Store
