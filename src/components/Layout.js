@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
       <Header handleClick={handleClick} active={active} links={links} />
-      <main id="content">
+      <main id="content" role="main">
         <>
           <PageProfileCard
             jobRole="Software Engineer & Internet Lover"
