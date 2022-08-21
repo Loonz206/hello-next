@@ -73,5 +73,10 @@ describe("opening hello-next locally", () => {
       cy.findByRole("link", { name: /contact/i }).click();
       cy.findByRole("heading", { name: /404/i });
     });
+
+    it("should have a footer", () => {
+      cy.findByText("Next Blog | Copyright 2020-2022");
+      cy.checkA11y(null, null, terminalLog);
+    });
   });
 });
