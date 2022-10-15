@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Head from "next/head";
 import Image from "next/image";
 import Layout from "../../src/components/Layout";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
@@ -7,20 +8,29 @@ import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 const Post = ({ post }) => {
   console.log("post", post);
   const { title, date } = post.fields;
+  const metaTitle = post.fields.metaContent.fields.title;
+  const metaContent = post.fields.metaContent.fields.metaContent;
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
-    <Layout>
-      <h1>{title}</h1>
-      <small>{dateString} | Lenny Peters</small>
-      <Image
-        layout="intrinsic"
-        src={post.fields.imageCover || "https://place-hold.it/720x405"}
-        width={720}
-        height={405}
-        alt="a grey frame"
-      />
-    </Layout>
+    <>
+      <Head>
+        <title>{`${metaTitle} || Hello-Next || Github Project`}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content={metaContent} />
+      </Head>
+      <Layout>
+        <h1>{title}</h1>
+        <small>{dateString} | Lenny Peters</small>
+        <Image
+          layout="intrinsic"
+          src={post.fields.imageCover || "https://place-hold.it/720x405"}
+          width={720}
+          height={405}
+          alt="a grey frame"
+        />
+      </Layout>
+    </>
   );
 };
 
