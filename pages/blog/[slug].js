@@ -6,18 +6,17 @@ import Layout from "../../src/components/Layout";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 
 const Post = ({ post }) => {
-  console.log("post", post);
   const { title, date } = post.fields;
   const metaTitle = post.fields.metaContent.fields.title;
-  const metaContent = post.fields.metaContent.fields.metaContent;
+  const metaDescription = post.fields.metaContent.fields.metaDescription;
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
     <>
       <Head>
-        <title>{`${metaTitle} || Hello-Next || Github Project`}</title>
+        <title>{`${metaTitle} | Lenny Peters`}</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={metaContent} />
+        <meta name="description" content={metaDescription} />
       </Head>
       <Layout>
         <h1>{title}</h1>
