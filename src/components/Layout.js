@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { links } from "../utils/links";
 import PropTypes from "prop-types";
 import Header from "../components/Header";
@@ -11,14 +11,6 @@ const Layout = ({ children }) => {
     return active === false ? setActive(true) : setActive(false);
   };
 
-  useEffect(() => {
-    let mounted = true;
-    const body = document.querySelector("body");
-    if (mounted && body && !body.classList.contains("js")) {
-      body.classList.add("js");
-    }
-    return () => (mounted = false);
-  }, []);
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
       <Header handleClick={handleClick} active={active} links={links} />
