@@ -1,7 +1,7 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-![Github Actions CI](https://github.com/Loonz206/hello-next/workflows/Github%20Actions%20CI/badge.svg)
+[![Github Actions CI](https://github.com/Loonz206/hello-next/actions/workflows/ci.yml/badge.svg)](https://github.com/Loonz206/hello-next/actions/workflows/ci.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/Loonz206/hello-next/badge.svg)](https://snyk.io/test/github/Loonz206/hello-next)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Loonz206_hello-next&metric=alert_status)](https://sonarcloud.io/dashboard?id=Loonz206_hello-next)
 
