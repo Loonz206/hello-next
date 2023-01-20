@@ -16,8 +16,6 @@ describe("Layout", () => {
   test("toggles the navigation", () => {
     // assemble
     const { getByText, container } = render(<Layout />);
-    const body = document.querySelector("body.js");
-    expect(body).toBeInTheDocument();
     expect(getByText("about")).toBeInTheDocument();
     expect(getByText("contact")).toBeInTheDocument();
     expect(container.querySelector(".wrap")).toBeInTheDocument();

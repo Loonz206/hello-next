@@ -22,6 +22,7 @@ function terminalLog(violations) {
 }
 
 describe("opening hello-next locally", () => {
+  const date = new Date().getFullYear();
   beforeEach(() => {
     // Load our app before starting each test case
     cy.visit("/");
@@ -52,7 +53,7 @@ describe("opening hello-next locally", () => {
     });
 
     it("should have a footer", () => {
-      cy.findByText("Next Blog | Copyright 2020-2022");
+      cy.findByText(`Next Blog | Copyright 2020-${date}`);
       cy.checkA11y(null, null, terminalLog);
     });
   });
@@ -75,7 +76,7 @@ describe("opening hello-next locally", () => {
     });
 
     it("should have a footer", () => {
-      cy.findByText("Next Blog | Copyright 2020-2022");
+      cy.findByText(`Next Blog | Copyright 2020-${date}`);
       cy.checkA11y(null, null, terminalLog);
     });
   });
