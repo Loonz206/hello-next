@@ -3,12 +3,12 @@ const links = [
   {
     name: "about",
     path: "/about",
-    id: 0,
+    id: 1,
   },
   {
     name: "contact",
     path: "/contact",
-    id: 1,
+    id: 2,
   },
 ];
 

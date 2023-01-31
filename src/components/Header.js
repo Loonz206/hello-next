@@ -26,10 +26,21 @@ const Header = (props) => {
         className={active === false ? "menu-link" : "menu-link active"}
         onClick={() => handleClick()}
       >
-        Menu &#x2630;
+        menu &#x2630;
       </a>
-      <nav id="menu" role="navigation">
-        <ul>{renderLinks}</ul>
+      <nav
+        id="menu"
+        className={active === false ? "" : "active"}
+        role="navigation"
+      >
+        <ul className="overlay-content">
+          <li>
+            <a href="#menu" className="closebtn" onClick={() => handleClick()}>
+              close &#x2715;
+            </a>
+          </li>
+          {renderLinks}
+        </ul>
       </nav>
     </header>
   );
