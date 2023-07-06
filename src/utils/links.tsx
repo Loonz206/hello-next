@@ -1,5 +1,11 @@
 // Static Generated Pages, non-dynamic generated
-const links = [
+interface Links {
+  name: string;
+  path: string;
+  id: number;
+}
+
+const links: Links[] = [
   {
     name: "about",
     path: "/about",

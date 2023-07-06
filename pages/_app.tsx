@@ -1,5 +1,4 @@
-import React, { useEffect, createContext } from "react";
-import PropTypes from "prop-types";
+import { useEffect, createContext } from "react";
 // Some global styles but then afterward css module pattern instead
 import "../src/styles/globals.scss";
 
@@ -20,8 +19,3 @@ const App = ({ Component, pageProps }) => {
 };
 
 export default App;
-
-App.propTypes = {
-  Component: PropTypes.func,
-  pageProps: PropTypes.shape(),
-};

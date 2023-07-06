@@ -1,4 +1,4 @@
-const sum = (a, b) => {
+export const sum = (a, b) => {
   return a + b;
 };
 
@@ -11,7 +11,7 @@ describe("sum function", () => {
 describe("testing with jest", () => {
   describe("matchers", () => {
     test("object assignment", () => {
-      const data = { one: 1 };
+      const data = { one: 1, two: 2 };
       data.two = 2;
       expect(data).toEqual({ one: 1, two: 2 });
     });

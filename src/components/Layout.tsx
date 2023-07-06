@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { links } from "../utils/links";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import Header from "../components/Header";
-import PageProfileCard from "../components/PageProfileCard";
-import Footer from "../components/Footer";
+import Header from "./Header";
+import PageProfileCard from "./PageProfileCard";
+import Footer from "./Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, links }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     return active === false ? setActive(true) : setActive(false);
@@ -13,7 +12,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className={active === false ? "wrap" : "wrap active"} id="wrap">
-      <Header handleClick={handleClick} active={active} links={links} />
+      <Header handleClick={() => handleClick} active={active} links={links} />
       <main id="content" role="main">
         <>
           <PageProfileCard

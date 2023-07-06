@@ -5,7 +5,10 @@ const client = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 });
 
-export async function getAllPosts() {
+export async function getAllPosts(name) {
+  const contentType = {
+    name,
+  };
   try {
     const entries = await client.getEntries({
       // get data if the contentType matches post
@@ -23,7 +26,10 @@ export async function getAllPosts() {
   }
 }
 
-export async function getAllCards() {
+export async function getAllCards(name) {
+  const contentType = {
+    name,
+  };
   try {
     const entries = await client.getEntries({
       content_type: "card",
@@ -54,7 +60,7 @@ export async function getPostBySlug(slug) {
     }
   } catch (error) {
     // eslint-disable-next-line no-undef
-    console.log(`Error getting Entries for ${contentType.name}.`, error);
+    console.log(`Error getting Entries for posts ${slug}.`, error);
   }
 }
 
@@ -75,7 +81,7 @@ export async function getMorePosts(slug) {
     }
   } catch (error) {
     // eslint-disable-next-line no-undef
-    console.log(`Error getting Entries for ${contentType.name}.`, error);
+    console.log(`Error getting Entries for posts ${slug}.`, error);
   }
 }
 
@@ -90,7 +96,10 @@ function parsePostSlugEntries(entries, cb = parsePostSlug) {
 }
 
 // get all existing URL
-export async function getAllPostsWithSlug() {
+export async function getAllPostsWithSlug(name) {
+  const contentType = {
+    name,
+  };
   try {
     const entries = await client.getEntries({
       content_type: "post",
