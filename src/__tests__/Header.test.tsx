@@ -1,4 +1,3 @@
-import React from "react";
 import { render, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Header from "../components/Header";
@@ -20,7 +19,15 @@ describe("Header", () => {
       },
     ];
     act(() => {
-      const { getByText } = render(<Header links={links} />);
+      const { getByText } = render(
+        <Header
+          links={links}
+          active={false}
+          handleClick={function (): {} {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      );
       expect(getByText("home")).toBeInTheDocument();
       expect(getByText("about")).toBeInTheDocument();
     });

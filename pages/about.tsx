@@ -1,8 +1,7 @@
-import React from "react";
 import Head from "next/head";
-import PropTypes from "prop-types";
 import Layout from "../src/components/Layout";
 import { getAllCards } from "../src/utils/contentfulPosts";
+import { links } from "../src/utils/links";
 
 const About = ({ cards }) => {
   const { headline } = cards[0].fields;
@@ -17,7 +16,7 @@ const About = ({ cards }) => {
           content="About Page || Hello-Next || Github Project"
         />
       </Head>
-      <Layout>
+      <Layout links={links}>
         <h1>{headline}</h1>
         <p>{detail}</p>
         <h1>About</h1>
@@ -35,8 +34,8 @@ const About = ({ cards }) => {
 };
 
 export async function getStaticProps() {
-  const res = await getAllCards();
-  const cards = await res;
+  const res = await getAllCards("card");
+  const cards = res;
 
   if (!cards) {
     return {
@@ -50,9 +49,5 @@ export async function getStaticProps() {
     },
   };
 }
-
-About.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape),
-};
 
 export default About;

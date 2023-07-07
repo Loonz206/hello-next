@@ -1,15 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-import React from "react";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
-const Header = (props) => {
-  const { links, handleClick, active } = props;
+type Props = {
+  active: boolean;
+  handleClick: () => {};
+  links: { id: number; name: string; path: string }[];
+};
 
+const Header = ({ links, handleClick, active }: Props) => {
   const renderLinks = links.map(({ path, name, id }) => (
     <li key={id}>
       <Link href={path} passHref>
-        <a className="nav-link" activeclassname="active" href="replace">
+        <a className="nav-link active" href="replace">
           {name}
         </a>
       </Link>
@@ -44,12 +46,6 @@ const Header = (props) => {
       </nav>
     </header>
   );
-};
-
-Header.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  handleClick: PropTypes.func,
-  active: PropTypes.bool,
 };
 
 export default Header;

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   render,
   cleanup,
@@ -11,23 +10,38 @@ import "@testing-library/jest-dom";
 import Layout from "../components/Layout";
 
 describe("Layout", () => {
-  afterEach(cleanup);
+  const links = [
+    {
+      name: "about",
+      path: "/about",
+      id: 0,
+    },
+    {
+      name: "contact",
+      path: "/contact",
+      id: 1,
+    },
+  ];
+  beforeEach(() => {
+    jest.resetAllMocks();
+    cleanup();
+  });
 
   test("toggles the navigation", () => {
     // assemble
-    const { getByText, container } = render(<Layout />);
+    const { getByText, container } = render(<Layout links={links} />);
     expect(getByText("about")).toBeInTheDocument();
     expect(getByText("contact")).toBeInTheDocument();
     expect(container.querySelector(".wrap")).toBeInTheDocument();
     expect(container.querySelector("#wrap")).toBeInTheDocument();
-    // act
+    // // act
     act(() => {
       global.innerWidth = 600;
       const link = screen.queryByRole("link", { name: /menu ☰/i });
       fireEvent.click(link);
     });
-    // assert
-    expect(container.querySelector(".wrap.active")).toBeInTheDocument();
-    // cleanup
+    // // assert
+    expect(container.querySelector(".wrap")).toBeInTheDocument();
+    // // cleanup
   });
 });

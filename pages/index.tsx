@@ -1,12 +1,20 @@
-import React from "react";
 import Head from "next/head";
-import PropTypes from "prop-types";
 import Layout from "../src/components/Layout";
 import PostList from "../src/components/PostList";
 import { links } from "../src/utils/links";
 import { getAllPosts } from "../src/utils/contentfulPosts";
 
 const HomePage = ({ posts }) => {
+  const renderPosts = posts.map(({ date, title, slug, imageCover }, index) => (
+    <PostList
+      key={index}
+      date={date}
+      title={title}
+      slug={slug}
+      imageCover={imageCover}
+    />
+  ));
+
   return (
     <>
       <Head>
@@ -19,24 +27,7 @@ const HomePage = ({ posts }) => {
           {posts.length > 1 ? `${posts.length} Posts` : `${posts.length} Post`}
         </h1>
         <hr />
-        {posts.length > 0
-          ? posts.map(
-              (
-                { date, title, description, author, slug, imageCover },
-                index
-              ) => (
-                <PostList
-                  key={index}
-                  date={date}
-                  title={title}
-                  description={description}
-                  author={author}
-                  slug={slug}
-                  imageCover={imageCover}
-                />
-              )
-            )
-          : null}
+        {posts.length > 0 ? renderPosts : null}
       </Layout>
     </>
   );
@@ -45,8 +36,8 @@ const HomePage = ({ posts }) => {
 export default HomePage;
 
 export async function getStaticProps() {
-  const res = await getAllPosts();
-  const posts = await res.map((p) => {
+  const res = await getAllPosts("posts");
+  const posts = res.map((p) => {
     return p.fields;
   });
 
@@ -62,7 +53,3 @@ export async function getStaticProps() {
     },
   };
 }
-
-HomePage.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape),
-};

@@ -1,4 +1,3 @@
-import React from "react";
 import { render, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -11,7 +10,7 @@ describe("Main", () => {
   test("toggles the navigation", () => {
     // assemble
     let children;
-    const { container } = render(<Main />);
+    const { container } = render(<Main>{children}</Main>);
     expect(container.querySelector("#content")).toBeInTheDocument();
     expect(container.querySelector(".main")).toBeInTheDocument();
     // act

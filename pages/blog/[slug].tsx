@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../../src/components/Layout";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
+import { links } from "../../src/utils/links";
 
 const Post = ({ post }) => {
   const { title, date } = post.fields;
@@ -18,7 +17,7 @@ const Post = ({ post }) => {
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={metaDescription} />
       </Head>
-      <Layout>
+      <Layout links={links}>
         <h1>{title}</h1>
         <small>{dateString} | Lenny Peters</small>
         <Image
@@ -45,8 +44,8 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const res = await getAllPosts();
-  const posts = await res.map((p) => {
+  const res = await getAllPosts("posts");
+  const posts = res.map((p) => {
     return p.fields;
   });
 
@@ -61,7 +60,3 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-Post.propTypes = {
-  post: PropTypes.shape(),
-};

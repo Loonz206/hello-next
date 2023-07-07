@@ -1,7 +1,7 @@
-import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../src/components/Layout";
+import { links } from "../src/utils/links";
 
 const Custom404 = () => {
   return (
@@ -11,7 +11,7 @@ const Custom404 = () => {
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="404 Error | Lenny Peters" />
       </Head>
-      <Layout>
+      <Layout links={links}>
         <h1>404 Error</h1>
         <p>Page not found.</p>
         <Image
