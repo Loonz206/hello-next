@@ -10,10 +10,8 @@ type Props = {
 const Header = ({ links, handleClick, active }: Props) => {
   const renderLinks = links.map(({ path, name, id }) => (
     <li key={id}>
-      <Link href={path} passHref>
-        <a className="nav-link active" href="replace">
-          {name}
-        </a>
+      <Link href={path} className="nav-link active" passHref>
+        {name}
       </Link>
     </li>
   ));

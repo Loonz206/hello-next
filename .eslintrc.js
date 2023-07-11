@@ -5,7 +5,6 @@ module.exports = {
     jest: true,
   },
   extends: [
-    "plugin:react-hooks/recommended",
     "standard",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -23,15 +22,7 @@ module.exports = {
     sourceType: "module",
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: [
-    "react",
-    "sonarjs",
-    "prettier",
-    "cypress",
-    "security",
-    "jsx-a11y",
-    "react-hooks",
-  ],
+  plugins: ["react", "sonarjs", "prettier", "cypress", "security", "jsx-a11y"],
   rules: {},
   settings: {
     react: {
