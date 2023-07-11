@@ -21,8 +21,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^14.1.3",
-    "contentful": "^8.5.8",
+    "@contentful/rich-text-react-renderer": "^15.17.0",
+    "contentful": "^9.0.0",
     "next": "^12.0.9",
     "next-images": "^1.8.5",
     "react": "^17.0.2",
