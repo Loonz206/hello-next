@@ -21,7 +21,6 @@ const Post = ({ post }) => {
         <h1>{title}</h1>
         <small>{dateString} | Lenny Peters</small>
         <Image
-          layout="intrinsic"
           src={post.fields.imageCover || "https://place-hold.it/720x405"}
           width={720}
           height={405}

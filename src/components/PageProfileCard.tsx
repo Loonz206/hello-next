@@ -7,25 +7,14 @@ const PageProfileCard = ({ twitterHandle, jobRole }) => {
   const handle = `https://twitter.com/${twitterHandle}`;
   return (
     <div className="card-container">
-      <Link href="/" passHref>
-        <a className="nav-link" href="replace">
-          <Image
-            src={Logo}
-            alt="logo"
-            priority
-            className="svg"
-            layout="responsive"
-            width={200}
-            height={200}
-          />
-          {jobRole}
-        </a>
+      <Link className="nav-link" href="/" passHref>
+        <Image src={Logo} alt="logo" className="svg" width={200} height={200} />
+        <br />
+        {jobRole}
       </Link>
       <br />
-      <Link href={handle} passHref>
-        <a href="replace" target="_blank">
-          {twitterHandle}
-        </a>
+      <Link href={handle} target="_blank" passHref>
+        {twitterHandle}
       </Link>
     </div>
   );

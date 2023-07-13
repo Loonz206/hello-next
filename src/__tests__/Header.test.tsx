@@ -1,11 +1,11 @@
-import { render, cleanup, act } from "@testing-library/react";
+import { render, cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Header from "../components/Header";
 
 describe("Header", () => {
   afterEach(cleanup);
 
-  test("renders Header component with the example nav passed", () => {
+  test("renders Header component with the example nav passed", async () => {
     const links = [
       {
         id: 0,
@@ -18,16 +18,16 @@ describe("Header", () => {
         path: "/about",
       },
     ];
-    act(() => {
-      const { getByText } = render(
-        <Header
-          links={links}
-          active={false}
-          handleClick={function (): {} {
-            throw new Error("Function not implemented.");
-          }}
-        />
-      );
+    const { getByText } = render(
+      <Header
+        links={links}
+        active={false}
+        handleClick={function (): {} {
+          throw new Error("Function not implemented.");
+        }}
+      />
+    );
+    await waitFor(() => {
       expect(getByText("home")).toBeInTheDocument();
       expect(getByText("about")).toBeInTheDocument();
     });
