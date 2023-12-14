@@ -11,6 +11,7 @@ const PostList = ({ date, title, slug, imageCover }) => {
         <h2>{title}</h2>
         <small>{dateString} | Lenny Peters</small>
         <Image
+          priority={true}
           src={imageCover || "https://place-hold.it/720x405"}
           width={720}
           height={405}

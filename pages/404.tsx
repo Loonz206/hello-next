@@ -15,6 +15,7 @@ const Custom404 = () => {
         <h1>404 Error</h1>
         <p>Page not found.</p>
         <Image
+          priority={true}
           width={720}
           height={405}
           src="https://media.giphy.com/media/13d2jHlSlxklVe/giphy.gif"

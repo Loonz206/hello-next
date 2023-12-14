@@ -8,7 +8,14 @@ const PageProfileCard = ({ twitterHandle, jobRole }) => {
   return (
     <div className="card-container">
       <Link className="nav-link" href="/" passHref>
-        <Image src={Logo} alt="logo" className="svg" width={200} height={200} />
+        <Image
+          priority={true}
+          src={Logo}
+          alt="logo"
+          className="svg"
+          width={200}
+          height={200}
+        />
         <br />
         {jobRole}
       </Link>
