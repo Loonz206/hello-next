@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Layout from "../../src/components/Layout";
+import Layout from "../../src/components/Layout/Layout";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 import { links } from "../../src/utils/links";
 

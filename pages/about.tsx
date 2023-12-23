@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../src/components/Layout";
+import Layout from "../src/components/Layout/Layout";
 import { getAllCards } from "../src/utils/contentfulPosts";
 import { links } from "../src/utils/links";
 
@@ -34,20 +34,26 @@ const About = ({ cards }) => {
 };
 
 export async function getStaticProps() {
-  const res = await getAllCards("card");
-  const cards = res;
+  try {
+    const res = await getAllCards("card");
+    const cards = res;
 
-  if (!cards) {
+    if (!cards) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        cards,
+      },
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: {
-      cards,
-    },
-  };
 }
 
 export default About;

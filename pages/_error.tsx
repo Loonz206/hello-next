@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
-import Layout from "../src/components/Layout";
+import Layout from "../src/components/Layout/Layout";
 import { links } from "../src/utils/links";
 
 const Error = ({ statusCode }) => {

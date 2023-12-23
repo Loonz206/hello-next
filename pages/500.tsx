@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../src/components/Layout";
+import Layout from "../src/components/Layout/Layout";
 import { links } from "../src/utils/links";
 
 const Custom500 = () => {

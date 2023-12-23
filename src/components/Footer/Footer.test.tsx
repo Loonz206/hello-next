@@ -1,7 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 
 describe("Footer Component", () => {
   test("should have the copyright in the footer", async () => {

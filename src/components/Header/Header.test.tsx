@@ -1,6 +1,6 @@
 import { render, cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Header from "../components/Header";
+import Header from "./Header";
 
 describe("Header", () => {
   afterEach(cleanup);

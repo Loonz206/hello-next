@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unknown-property */
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../assets/logo.svg";
+import Logo from "../../assets/logo.svg";
 
 const PageProfileCard = ({ twitterHandle, jobRole }) => {
   const handle = `https://twitter.com/${twitterHandle}`;

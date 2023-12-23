@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Layout from "../src/components/Layout";
-import PostList from "../src/components/PostList";
+import Layout from "../src/components/Layout/Layout";
+import PostList from "../src/components/PostList/PostList";
 import { links } from "../src/utils/links";
 import { getAllPosts } from "../src/utils/contentfulPosts";
 
@@ -36,20 +36,26 @@ const HomePage = ({ posts }) => {
 export default HomePage;
 
 export async function getStaticProps() {
-  const res = await getAllPosts("posts");
-  const posts = res.map((p) => {
-    return p.fields;
-  });
+  try {
+    const res = await getAllPosts("posts");
+    const posts = res.map((p) => {
+      return p.fields;
+    });
 
-  if (!posts) {
+    if (!posts) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: {
-      posts,
-    },
-  };
 }

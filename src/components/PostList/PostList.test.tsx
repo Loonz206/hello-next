@@ -1,6 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import PostList from "../components/PostList";
+import PostList from "./PostList";
 
 describe("<PostList/>", () => {
   const date = `Wed Jul 05 2023 20:35:15 GMT-0700 (Pacific Daylight Time)`;
@@ -19,9 +19,7 @@ describe("<PostList/>", () => {
         imageCover={imageCover}
       />
     );
-
     const displayedImage = container.querySelector("img");
-
     expect(displayedImage.src).toBe(
       "http://localhost/_next/image?url=https%3A%2F%2Fplacehold.it%2F720%2F405&w=1920&q=75"
     );

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import Link from "next/link";
 import Image from "next/image";
 

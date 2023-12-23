@@ -1,7 +1,7 @@
 import { render, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Main from "../components/Main";
+import Main from "./Main";
 
 describe("Main", () => {
   // cleanup

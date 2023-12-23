@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Layout from "../components/Layout";
+import Layout from "./Layout";
 
 describe("Layout", () => {
   const links = [
@@ -22,6 +22,11 @@ describe("Layout", () => {
       id: 1,
     },
   ];
+
+  it("renders without crashing", () => {
+    render(<Layout links={links} />);
+  });
+
   beforeEach(() => {
     jest.resetAllMocks();
     cleanup();
@@ -41,7 +46,9 @@ describe("Layout", () => {
       fireEvent.click(link);
     });
     // // assert
+    expect(container.querySelector("#wrap")).toBeInTheDocument();
     expect(container.querySelector(".wrap")).toBeInTheDocument();
+    expect(container.querySelector(".wrap .active")).toBeInTheDocument();
     // // cleanup
   });
 });
