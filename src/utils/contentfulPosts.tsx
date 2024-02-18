@@ -15,7 +15,7 @@ export async function getAllPosts(name: string) {
       content_type: "post",
 
       // order results
-      order: "-fields.date",
+      order: ["-fields.date"],
     });
     if (entries.items) {
       return entries.items;
@@ -70,7 +70,7 @@ export async function getMorePosts(slug: any) {
     const entries = await client.getEntries({
       content_type: "post",
       limit: 3,
-      order: "-fields.date",
+      order: ["-fields.date"],
 
       // filtering getting post by slug
       "fields.slug[nin]": slug,
@@ -105,7 +105,7 @@ export async function getAllPostsWithSlug(name: any) {
       content_type: "post",
 
       // getting value of slug
-      select: "fields.slug",
+      select: ["fields.slug"],
     });
     return parsePostSlugEntries(entries, (post) => post.fields);
   } catch (error) {
