@@ -11,7 +11,6 @@ module.exports = withImages({
 module.exports = {
   // put the domains where images will be placed
   images: {
-    domains: ["media.giphy.com"],
     // remotePatterns: ["place-hold.it", "media.giphy.com", "images.unsplash.com"],
     remotePatterns: [
       {
@@ -30,7 +29,7 @@ module.exports = {
         protocol: "https",
         hostname: "media.giphy.com",
         port: "",
-        pathname: "/*",
+        pathname: "/media/**",
       },
       {
         protocol: "http",
