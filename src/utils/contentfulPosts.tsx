@@ -5,7 +5,7 @@ const client = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 });
 
-export async function getAllPosts(name) {
+export async function getAllPosts(name: string) {
   const contentType = {
     name,
   };
@@ -65,7 +65,7 @@ export async function getPostBySlug(slug) {
 }
 
 // get 3 latest posts
-export async function getMorePosts(slug) {
+export async function getMorePosts(slug: any) {
   try {
     const entries = await client.getEntries({
       content_type: "post",
@@ -96,7 +96,7 @@ function parsePostSlugEntries(entries, cb = parsePostSlug) {
 }
 
 // get all existing URL
-export async function getAllPostsWithSlug(name) {
+export async function getAllPostsWithSlug(name: any) {
   const contentType = {
     name,
   };

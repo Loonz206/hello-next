@@ -6,7 +6,7 @@ function terminalLog(violations) {
     "log",
     `${violations.length} accessibility violation${
       violations.length === 1 ? "" : "s"
-    } ${violations.length === 1 ? "was" : "were"} detected`
+    } ${violations.length === 1 ? "was" : "were"} detected`,
   );
   // pluck specific keys to keep the table readable
   const violationData = violations.map(
@@ -15,7 +15,7 @@ function terminalLog(violations) {
       impact,
       description,
       nodes: nodes.length,
-    })
+    }),
   );
 
   cy.task("table", violationData);
@@ -63,7 +63,7 @@ describe("opening hello-next locally", () => {
       cy.findByRole("link", { name: /about/i }).click();
       cy.findByRole("heading", { name: /about/i });
       cy.findByText(
-        "A software engineer with solid experiences in creating attractive, user-driven, responsive websites and applications. My adaptive personality makes it fun for me to jump into various types of teams and support the build from writing code to designing layouts and other graphical elements."
+        "A software engineer with solid experiences in creating attractive, user-driven, responsive websites and applications. My adaptive personality makes it fun for me to jump into various types of teams and support the build from writing code to designing layouts and other graphical elements.",
       );
       cy.checkA11y(null, null, terminalLog);
     });

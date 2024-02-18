@@ -25,7 +25,7 @@ describe("Header", () => {
         handleClick={function (): {} {
           throw new Error("Function not implemented.");
         }}
-      />
+      />,
     );
     await waitFor(() => {
       expect(getByText("home")).toBeInTheDocument();
