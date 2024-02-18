@@ -18,7 +18,7 @@ describe("Main", () => {
       children = render(
         <Main>
           <h1>Hello Children</h1>
-        </Main>
+        </Main>,
       );
     });
     // assert

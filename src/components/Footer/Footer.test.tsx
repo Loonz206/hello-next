@@ -10,7 +10,7 @@ describe("Footer Component", () => {
 
     await waitFor(() => {
       expect(
-        getByText(`Next Blog | Copyright 2020-${date}`)
+        getByText(`Next Blog | Copyright 2020-${date}`),
       ).toBeInTheDocument();
     });
   });

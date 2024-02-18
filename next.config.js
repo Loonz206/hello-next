@@ -11,7 +11,31 @@ module.exports = withImages({
 module.exports = {
   // put the domains where images will be placed
   images: {
-    domains: ["place-hold.it", "media.giphy.com", "images.unsplash.com"],
+    // remotePatterns: ["place-hold.it", "media.giphy.com", "images.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/*",
+      },
+      {
+        protocol: "https",
+        hostname: "place-hold.it",
+        port: "",
+        pathname: "/*",
+      },
+      {
+        protocol: "https",
+        hostname: "media.giphy.com",
+        port: "",
+        pathname: "/media/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],

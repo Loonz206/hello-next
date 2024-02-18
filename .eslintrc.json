@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "jest": true
+  },
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:sonarjs/recommended",
+    "next"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "cypress", "sonarjs", "jsx-a11y"],
+  "rules": {},
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

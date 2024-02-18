@@ -5,7 +5,7 @@ const client = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 });
 
-export async function getAllPosts(name) {
+export async function getAllPosts(name: string) {
   const contentType = {
     name,
   };
@@ -15,7 +15,7 @@ export async function getAllPosts(name) {
       content_type: "post",
 
       // order results
-      order: "-fields.date",
+      order: ["-fields.date"],
     });
     if (entries.items) {
       return entries.items;
@@ -65,12 +65,12 @@ export async function getPostBySlug(slug) {
 }
 
 // get 3 latest posts
-export async function getMorePosts(slug) {
+export async function getMorePosts(slug: any) {
   try {
     const entries = await client.getEntries({
       content_type: "post",
       limit: 3,
-      order: "-fields.date",
+      order: ["-fields.date"],
 
       // filtering getting post by slug
       "fields.slug[nin]": slug,
@@ -96,7 +96,7 @@ function parsePostSlugEntries(entries, cb = parsePostSlug) {
 }
 
 // get all existing URL
-export async function getAllPostsWithSlug(name) {
+export async function getAllPostsWithSlug(name: any) {
   const contentType = {
     name,
   };
@@ -105,7 +105,7 @@ export async function getAllPostsWithSlug(name) {
       content_type: "post",
 
       // getting value of slug
-      select: "fields.slug",
+      select: ["fields.slug"],
     });
     return parsePostSlugEntries(entries, (post) => post.fields);
   } catch (error) {
