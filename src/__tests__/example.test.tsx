@@ -133,7 +133,7 @@ describe("testing with jest", () => {
     const errorMessage = "grape jelly";
     const successMessage = "peanut butter";
     const fetchData = () => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve(successMessage);
         }, 100);

@@ -2,7 +2,7 @@ import { Component, ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
-  fallback?: any;
+  fallback?: ReactNode;
 }
 
 interface State {

@@ -22,7 +22,7 @@ describe("Header", () => {
       <Header
         links={links}
         active={false}
-        handleClick={function (): {} {
+        handleClick={function (): void {
           throw new Error("Function not implemented.");
         }}
       />,

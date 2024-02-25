@@ -7,11 +7,12 @@
   "extends": [
     "standard",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:cypress/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:sonarjs/recommended",
-    "next"
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "sourceType": "module"
