@@ -1,9 +1,13 @@
+import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
-import PropTypes from "prop-types";
 import Layout from "../src/components/Layout/Layout";
 import { links } from "../src/utils/links";
 
-const Error = ({ statusCode }) => {
+interface Props {
+  statusCode?: number;
+}
+
+const Error: NextPage<Props> = ({ statusCode }) => {
   return (
     <>
       <Head>
@@ -27,15 +31,9 @@ const Error = ({ statusCode }) => {
   );
 };
 
-Error.getInitialProps = ({ res, err }) => {
-  if (res) {
-    return res.statusCode;
-  }
-  return err ? err.statusCode : 404;
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  return { statusCode };
 };
 
 export default Error;
-
-Error.propTypes = {
-  statusCode: PropTypes.string,
-};

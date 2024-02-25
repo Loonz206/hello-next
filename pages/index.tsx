@@ -1,10 +1,46 @@
+import { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import PostList from "../src/components/PostList/PostList";
 import { links } from "../src/utils/links";
 import { getAllPosts } from "../src/utils/contentfulPosts";
 
-const HomePage = ({ posts }) => {
+interface Posts {
+  date: string;
+  title: string;
+  slug: string;
+  imageCover: string;
+  content: string;
+  author: string;
+  authorImage: string;
+  authorBio: string;
+  authorTwitter: string;
+  authorInstagram: string;
+  authorGitHub: string;
+  authorLinkedIn: string;
+  authorWebsite: string;
+  authorLocation: string;
+  authorEmail: string;
+  authorPhone: string;
+  authorBioImage: string;
+  authorBioVideo: string;
+  authorBioVideoThumbnail: string;
+  authorBioVideoThumbnailAlt: string;
+  authorBioVideoThumbnailTitle: string;
+  authorBioVideoThumbnailDescription: string;
+  authorBioVideoThumbnailCaption: string;
+  authorBioVideoThumbnailCredit: string;
+  authorBioVideoThumbnailCreditLink: string;
+  authorBioVideoThumbnailCreditLinkText: string;
+  authorBioVideoThumbnailCreditLinkTitle: string;
+  authorBioVideoThumbnailCreditLinkDescription: string;
+}
+
+interface Props {
+  posts: Posts[];
+}
+
+const HomePage: NextPage<Props> = ({ posts }) => {
   const renderPosts = posts.map(({ date, title, slug, imageCover }, index) => (
     <PostList
       key={index}
@@ -38,7 +74,7 @@ export default HomePage;
 export async function getStaticProps() {
   try {
     const res = await getAllPosts("posts");
-    const posts = res.map((p) => {
+    const posts = res?.map((p) => {
       return p.fields;
     });
 

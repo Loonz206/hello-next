@@ -2,7 +2,7 @@ import { Component, ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
-  fallback?: any;
+  fallback?: ReactNode;
 }
 
 interface State {
@@ -10,7 +10,7 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props | Readonly<Props>) {
     super(props);
     this.state = { hasError: false };
     const { fallback } = props;
@@ -19,14 +19,14 @@ class ErrorBoundary extends Component<Props, State> {
     }
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: unknown) {
     // Update state so the next render will show the fallback UI.
     if (error) {
       return { hasError: true };
     }
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: unknown, errorInfo: unknown) {
     const message = `Unable to render: ${error} ${errorInfo}`;
     console.error(message);
   }

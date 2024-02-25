@@ -3,8 +3,19 @@ import { useEffect, createContext } from "react";
 import "../src/styles/globals.scss";
 
 export const PageContext = createContext("");
+interface PageComponent {
+  pageContext: string;
+}
 
-const App = ({ Component, pageProps }) => {
+const App = ({
+  Component,
+  pageProps,
+}: {
+  Component: React.ComponentType<PageComponent>;
+  pageProps: {
+    pageContext: string;
+  };
+}) => {
   useEffect(() => {
     const body = document.querySelector("body");
     if (body && !body.classList.contains("js")) {

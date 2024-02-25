@@ -1,4 +1,4 @@
-const Main = ({ children }) => {
+const Main = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="main" id="content">
       {children}

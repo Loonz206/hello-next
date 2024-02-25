@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const PostList = ({ date, title, slug, imageCover }) => {
+interface Props {
+  date: string;
+  title: string;
+  slug: string;
+  imageCover: string;
+}
+
+const PostList = ({ date, title, slug, imageCover }: Props) => {
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
@@ -10,10 +17,10 @@ const PostList = ({ date, title, slug, imageCover }) => {
         <h2>{title}</h2>
         <small>{dateString} | Lenny Peters</small>
         <Image
-          priority={true}
+          loading="lazy" // {lazy} | {eager}
+          width={960}
+          height={640}
           src={imageCover || "https://place-hold.it/720x405"}
-          width={720}
-          height={405}
           alt="a grey frame"
         />
       </Link>

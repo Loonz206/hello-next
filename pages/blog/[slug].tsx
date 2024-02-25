@@ -4,11 +4,23 @@ import Layout from "../../src/components/Layout/Layout";
 import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 import { links } from "../../src/utils/links";
 
-const Post = ({ post }) => {
+const Post = (post: {
+  fields: {
+    metaContent?: {
+      fields: {
+        title: string;
+        metaDescription: string;
+      };
+    };
+    imageCover?: string;
+    title?: string;
+    date?: string;
+  };
+}) => {
   const { title, date } = post.fields;
-  const metaTitle = post.fields.metaContent.fields.title;
-  const metaDescription = post.fields.metaContent.fields.metaDescription;
-  const newDate = new Date(date).toUTCString();
+  const metaTitle = post?.fields?.metaContent?.fields.title;
+  const metaDescription = post?.fields?.metaContent?.fields.metaDescription;
+  const newDate = new Date(date!).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
     <>
@@ -34,29 +46,48 @@ const Post = ({ post }) => {
 
 export default Post;
 
-export async function getStaticProps(context) {
-  const { slug } = context.params;
-  const post = await getPostBySlug(slug);
-
-  return {
-    props: { post },
+interface ContextProps {
+  params: {
+    slug: string;
   };
 }
 
-export async function getStaticPaths() {
-  const res = await getAllPosts("posts");
-  const posts = res.map((p) => {
-    return p.fields;
-  });
+export async function getStaticProps(context: ContextProps) {
+  const { slug } = context.params;
+  try {
+    const post = await getPostBySlug(slug);
+    return {
+      props: { post },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
+}
 
-  return {
-    paths: posts.map(({ slug }) => {
-      return {
-        params: {
-          slug,
-        },
-      };
-    }),
-    fallback: false,
-  };
+export async function getStaticPaths() {
+  try {
+    const res = await getAllPosts("posts");
+    const posts = res?.map((p) => {
+      return p.fields;
+    });
+
+    return {
+      paths: posts?.map(({ slug }) => {
+        return {
+          params: {
+            slug,
+          },
+        };
+      }),
+      fallback: false,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
 }

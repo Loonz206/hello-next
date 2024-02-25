@@ -3,7 +3,17 @@ import Layout from "../src/components/Layout/Layout";
 import { getAllCards } from "../src/utils/contentfulPosts";
 import { links } from "../src/utils/links";
 
-const About = ({ cards }) => {
+interface Card {
+  fields: {
+    headline: string;
+    detail: string;
+  };
+}
+interface Props {
+  cards: Card[];
+}
+
+const About = ({ cards }: Props) => {
   const { headline } = cards[0].fields;
   const { detail } = cards[0].fields;
   return (

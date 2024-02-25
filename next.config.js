@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const withImages = require("next-images");
+
 module.exports = withImages({
   swcMinify: true,
   exclude: path.resolve(__dirname, "src/assets/svg"),
   webpack(config, options) {
-    return config;
+    return { config, options };
   },
 });
 
 module.exports = {
   // put the domains where images will be placed
   images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     // remotePatterns: ["place-hold.it", "media.giphy.com", "images.unsplash.com"],
     remotePatterns: [
       {

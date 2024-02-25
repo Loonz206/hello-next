@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-type Props = {
+interface Props {
   active: boolean;
-  handleClick: () => {};
+  handleClick: () => void;
   links: { id: number; name: string; path: string }[];
-};
+}
 
 const Header = ({ links, handleClick, active }: Props) => {
   const renderLinks = links.map(({ path, name, id }) => (
