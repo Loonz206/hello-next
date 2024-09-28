@@ -1,10 +1,14 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import Header from "../Header/Header";
 import PageProfileCard from "../PageProfileCard/PageProfileCard";
 import Footer from "../Footer/Footer";
 
-const Layout = ({ children, links }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+  links: Array<{ id: number; name: string; path: string }>;
+};
+
+const Layout = ({ children, links }: LayoutProps) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     return active === false ? setActive(true) : setActive(false);
@@ -23,14 +27,6 @@ const Layout = ({ children, links }) => {
       <Footer />
     </div>
   );
-};
-
-Layout.defaultProps = {
-  children: [],
-};
-
-Layout.propTypes = {
-  children: PropTypes.node,
 };
 
 export default Layout;

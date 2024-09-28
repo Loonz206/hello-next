@@ -5,7 +5,7 @@ import { getAllPosts, getPostBySlug } from "../../src/utils/contentfulPosts";
 import { links } from "../../src/utils/links";
 
 const Post = ({ post }) => {
-  const { title, date } = post.fields;
+  const { title, date } = post.fields || {};
   const metaTitle = post.fields.metaContent.fields.title;
   const metaDescription = post.fields.metaContent.fields.metaDescription;
   const newDate = new Date(date).toUTCString();
@@ -22,7 +22,7 @@ const Post = ({ post }) => {
         <small>{dateString} | Lenny Peters</small>
         <Image
           priority={true}
-          src={post.fields.imageCover || "https://place-hold.it/720x405"}
+          src={post.fields.imageCover ?? "https://place-hold.it/720x405"}
           width={720}
           height={405}
           alt="a grey frame"
