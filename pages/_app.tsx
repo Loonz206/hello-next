@@ -1,4 +1,5 @@
 import { useEffect, createContext } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // Some global styles but then afterward css module pattern instead
 import "../src/styles/globals.scss";
 
@@ -14,6 +15,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <PageContext.Provider value={pageProps.pageContext}>
       <Component {...pageProps} />
+      <SpeedInsights />
     </PageContext.Provider>
   );
 };
