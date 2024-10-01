@@ -5,9 +5,9 @@ import { links } from "../src/utils/links";
 import { getAllPosts } from "../src/utils/contentfulPosts";
 
 const HomePage = ({ posts }) => {
-  const renderPosts = posts.map(({ date, title, slug, imageCover }, index) => (
+  const renderPosts = posts.map(({ date, title, slug, imageCover }) => (
     <PostList
-      key={index}
+      key={title + date}
       date={date}
       title={title}
       slug={slug}
@@ -54,6 +54,7 @@ export async function getStaticProps() {
       },
     };
   } catch (error) {
+    console.error(error);
     return {
       notFound: true,
     };
