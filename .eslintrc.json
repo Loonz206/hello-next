@@ -9,7 +9,7 @@
     "plugin:react/recommended",
     "plugin:cypress/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:sonarjs/recommended",
+    "plugin:sonarjs/recommended-legacy",
     "plugin:@typescript-eslint/recommended",
     "next",
     "plugin:prettier/recommended"
