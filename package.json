@@ -17,6 +17,7 @@
     "pretty": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx|js|json|md)\"",
     "start": "next start",
     "test": "jest",
+    "tsc": "tsc --noEmit -p .",
     "validate": "npm-run-all --parallel check-format lint",
     "prepare": "husky install"
   },

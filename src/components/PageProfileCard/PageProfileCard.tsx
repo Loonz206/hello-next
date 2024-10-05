@@ -2,7 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../assets/logo.svg";
 
-const PageProfileCard = ({ twitterHandle, jobRole }) => {
+type PageProfileCardProps = {
+  twitterHandle: string;
+  jobRole: string;
+};
+
+const PageProfileCard = ({ twitterHandle, jobRole }: PageProfileCardProps) => {
   const handle = `https://twitter.com/${twitterHandle}`;
   return (
     <div className="card-container">

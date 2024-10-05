@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const PostList = ({ date, title, slug, imageCover }) => {
+type PostListProps = {
+  date: string;
+  title: string;
+  slug: string;
+  imageCover: string;
+};
+
+const PostList = ({ date, title, slug, imageCover }: PostListProps) => {
   const newDate = new Date(date).toUTCString();
   const dateString = newDate.split(" ").slice(0, 4).join(" ");
   return (
