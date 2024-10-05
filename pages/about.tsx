@@ -1,9 +1,19 @@
+import React from "react";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import { getAllCards } from "../src/utils/contentfulPosts";
 import { links } from "../src/utils/links";
 
-const About = ({ cards }) => {
+type AboutProps = {
+  cards: {
+    fields: {
+      headline: string;
+      detail: string;
+    };
+  }[];
+};
+
+const About = ({ cards }: AboutProps) => {
   const { headline } = cards[0].fields;
   const { detail } = cards[0].fields;
   return (

@@ -3,9 +3,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 // Some global styles but then afterward css module pattern instead
 import "../src/styles/globals.scss";
 
+import { AppProps } from "next/app";
+
 export const PageContext = createContext("");
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     const body = document.querySelector("body");
     if (body && !body.classList.contains("js")) {

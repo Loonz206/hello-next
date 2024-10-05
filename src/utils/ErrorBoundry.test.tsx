@@ -10,9 +10,9 @@ describe("<ErrorBoundry/>", () => {
     const Greeting = () => {
       return <div>Hello World</div>;
     };
-    const FallbackComponent = (error) => <span>Error: {error.message}</span>;
+    const fallback = (error) => <span>Error: {error.message}</span>;
     const { getByText, unmount } = render(
-      <ErrorBoundary fallback={<FallbackComponent />}>
+      <ErrorBoundary fallback={fallback}>
         <Greeting />
       </ErrorBoundary>,
     );
@@ -27,9 +27,9 @@ describe("<ErrorBoundry/>", () => {
       throw new Error("Oh shit");
     };
 
-    const FallbackComponent = (error) => <span>Error: {error.message}</span>;
+    const fallback = (error) => <span>Error: {error.message}</span>;
     const { unmount } = render(
-      <ErrorBoundary fallback={<FallbackComponent />}>
+      <ErrorBoundary fallback={fallback}>
         <Greeting />
       </ErrorBoundary>,
     );

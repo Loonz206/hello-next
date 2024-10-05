@@ -5,7 +5,6 @@ import {
   screen,
   fireEvent,
 } from "@testing-library/react";
-import "@testing-library/jest-dom";
 
 import Layout from "./Layout";
 
@@ -24,7 +23,8 @@ describe("Layout", () => {
   ];
 
   it("renders without crashing", () => {
-    render(<Layout links={links} />);
+    const children = <div>Children</div>;
+    render(<Layout links={links}>{children}</Layout>);
   });
 
   beforeEach(() => {
@@ -33,8 +33,11 @@ describe("Layout", () => {
   });
 
   test("toggles the navigation", () => {
+    const children = <div>Children</div>;
     // assemble
-    const { getByText, container } = render(<Layout links={links} />);
+    const { getByText, container } = render(
+      <Layout links={links}>{children}</Layout>,
+    );
     expect(getByText("about")).toBeInTheDocument();
     expect(getByText("contact")).toBeInTheDocument();
     expect(container.querySelector(".wrap")).toBeInTheDocument();

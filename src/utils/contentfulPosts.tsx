@@ -1,8 +1,16 @@
-import { createClient } from "contentful";
+import {
+  createClient,
+  EntryCollection,
+  EntrySkeletonType,
+  Entry,
+} from "contentful";
+
+const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || "";
+const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || "";
 
 const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+  space,
+  accessToken,
 });
 
 export async function getAllPosts(name: string) {
@@ -26,7 +34,7 @@ export async function getAllPosts(name: string) {
   }
 }
 
-export async function getAllCards(name) {
+export async function getAllCards(name: string) {
   const contentType = {
     name,
   };
@@ -44,7 +52,7 @@ export async function getAllCards(name) {
 }
 
 // get a post by slug
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug: string) {
   try {
     const entries = await client.getEntries({
       content_type: "post",
@@ -65,7 +73,7 @@ export async function getPostBySlug(slug) {
 }
 
 // get 3 latest posts
-export async function getMorePosts(slug) {
+export async function getMorePosts(slug: string) {
   try {
     const entries = await client.getEntries({
       content_type: "post",
@@ -85,13 +93,18 @@ export async function getMorePosts(slug) {
   }
 }
 
-function parsePostSlug({ fields }) {
+type ParsePostSlugProps = Entry<EntrySkeletonType, undefined, string>;
+
+function parsePostSlug({ fields }: ParsePostSlugProps) {
   return {
-    slug: fields.slug,
+    slug: fields.slug as string,
   };
 }
 
-function parsePostSlugEntries(entries, cb = parsePostSlug) {
+function parsePostSlugEntries(
+  entries: EntryCollection<EntrySkeletonType, undefined, string>,
+  cb = parsePostSlug,
+) {
   return entries?.items?.map(cb);
 }
 
@@ -107,7 +120,9 @@ export async function getAllPostsWithSlug(name: string) {
       // getting value of slug
       select: ["fields.slug"],
     });
-    return parsePostSlugEntries(entries, (post) => post.fields);
+    return parsePostSlugEntries(entries, (post) => ({
+      slug: post.fields.slug as string,
+    }));
   } catch (error) {
     // eslint-disable-next-line no-undef
     console.log(`Error getting Entries for ${contentType.name}.`, error);

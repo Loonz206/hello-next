@@ -1,10 +1,20 @@
+import React from "react";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import PostList from "../src/components/PostList/PostList";
 import { links } from "../src/utils/links";
 import { getAllPosts } from "../src/utils/contentfulPosts";
 
-const HomePage = ({ posts }) => {
+type HomePageProps = {
+  posts: {
+    date: string;
+    title: string;
+    slug: string;
+    imageCover: string;
+  }[];
+};
+
+const HomePage = ({ posts }: HomePageProps) => {
   const renderPosts = posts.map(({ date, title, slug, imageCover }) => (
     <PostList
       key={title + date}
@@ -38,7 +48,7 @@ export default HomePage;
 export async function getStaticProps() {
   try {
     const res = await getAllPosts("posts");
-    const posts = res.map((p) => {
+    const posts = res?.map((p) => {
       return p.fields;
     });
 
