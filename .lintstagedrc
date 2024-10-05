@@ -1,7 +1,7 @@
 {
   "*.+(js|jsx|ts|tsx)":[
     "eslint",
-    "npm run tsc"
+    "tsc --noEmit -p ."
   ],
   "*.+(js|json|md)":[
     "prettier --write"
