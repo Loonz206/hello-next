@@ -1,7 +1,7 @@
 {
   "*.+(js|jsx|ts|tsx)":[
     "eslint",
-    "tsc --noEmit -p ."
+    "tsc-files --noEmit"
   ],
   "*.+(js|json|md)":[
     "prettier --write"
