@@ -2,10 +2,11 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Github Actions CI](https://github.com/Loonz206/hello-next/actions/workflows/ci.yml/badge.svg)](https://github.com/Loonz206/hello-next/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/Loonz206/hello-next/branch/main/graph/badge.svg)](https://codecov.io/gh/Loonz206/hello-next)
 [![Known Vulnerabilities](https://snyk.io/test/github/Loonz206/hello-next/badge.svg)](https://snyk.io/test/github/Loonz206/hello-next)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Loonz206_hello-next&metric=alert_status)](https://sonarcloud.io/dashboard?id=Loonz206_hello-next)
 
-## hello-next
+# hello-next
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -23,12 +24,100 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
+## Agent Workflows
+
+This project uses specialized agents that work together to ensure code quality, testing, and documentation. The flows below outline the handoff sequences for different development tasks.
+
+### Component Creation Flow
+
+When creating a new React component, agents follow this handoff sequence:
+
+```mermaid
+graph TD
+    A["🎯 React Agent<br/>Component Creation<br/>✓ Parse requirements<br/>✓ Functional component<br/>✓ Accessibility setup"] --> B["🔍 Lint Agent<br/>Code Quality<br/>✓ ESLint + Prettier<br/>✓ TypeScript check<br/>✓ Format auto-fix"]
+    B --> C["✅ Test Agent<br/>Unit Tests<br/>✓ Jest setup<br/>✓ >80% coverage<br/>✓ Accessibility tests"]
+    C --> D["🌐 API Agent<br/>(Optional)<br/>✓ React Query hooks<br/>✓ Data fetching<br/>✓ Caching config"]
+    D -->|If API needed| B
+    C --> E["📝 Docs Agent<br/>Documentation<br/>✓ Create .md file<br/>✓ Props documentation<br/>✓ Lint markdown"]
+    E --> F["✨ Component Complete<br/>Ready for PR/Merge"]
+```
+
+**Key Points**:
+
+- Start with React Agent for component structure
+- Lint Agent ensures code quality (auto-fixes available)
+- Test Agent validates >80% coverage requirement
+- Optional API Agent for data-fetching components
+- Docs Agent creates component documentation
+- Each step has clear handoff criteria
+
+### Page Creation Flow
+
+When creating a new page, the workflow follows Next.js conventions:
+
+```mermaid
+graph TD
+    A["🎯 React Agent<br/>Page Creation<br/>✓ Create in pages/<br/>✓ Setup getStaticProps<br/>✓ Layout integration<br/>✓ Accessibility compliance"] --> B["🔍 Lint Agent<br/>Code Quality<br/>✓ ESLint validation<br/>✓ Prettier formatting<br/>✓ TypeScript types"]
+    B --> C{Data<br/>Fetching?}
+    C -->|Yes| D["🌐 API Agent<br/>Data Integration<br/>✓ React Query setup<br/>✓ ISR strategy<br/>✓ Error handling"]
+    D --> B
+    C -->|No| E["✅ Test Agent<br/>Page Tests<br/>✓ Mock Next.js router<br/>✓ Test getStaticProps<br/>✓ >80% coverage"]
+    B --> E
+    E --> F["📝 Docs Agent<br/>Documentation<br/>✓ Route documentation<br/>✓ Data fetching docs<br/>✓ SEO metadata<br/>✓ Navigation update"]
+    F --> G["✨ Page Complete<br/>Ready for Navigation Update"]
+```
+
+**Key Points**:
+
+- React Agent creates page with Next.js best practices
+- Optional API Agent for server-side data fetching
+- Lint Agent validates code quality throughout
+- Test Agent ensures page functionality and coverage
+- Docs Agent documents route, props, and SEO
+- Final step prepares for navigation updating
+
+### Navigation Update Flow
+
+When adding new pages to navigation, the workflow ensures consistency:
+
+```mermaid
+graph TD
+    A["🎯 React Agent<br/>Navigation Update<br/>✓ Update Header/NavLink<br/>✓ Add new route link<br/>✓ Accessibility check<br/>✓ Keyboard navigation"] --> B["🔍 Lint Agent<br/>Code Quality<br/>✓ ESLint + Prettier<br/>✓ TypeScript check<br/>✓ Import organization"]
+    B --> C["✅ Test Agent<br/>Navigation Tests<br/>✓ Render all links<br/>✓ Active state test<br/>✓ Keyboard nav test<br/>✓ axe accessibility<br/>✓ >80% coverage"]
+    C --> D["📝 Docs Agent<br/>Documentation<br/>✓ Update README<br/>✓ Document structure<br/>✓ Accessibility notes<br/>✓ Lint markdown"]
+    D --> E["🎯 Quality Standards<br/>(Optional Review)<br/>✓ SonarSource rules<br/>✓ Accessibility verify<br/>✓ Coverage check"]
+    E --> F["✨ Navigation Complete<br/>Ready for Merge"]
+```
+
+**Key Points**:
+
+- React Agent updates navigation components
+- All components require linting validation
+- Test Agent verifies accessibility with axe
+- Docs Agent keeps README synchronized
+- Optional Quality Standards review before merge
+- Each agent hands off specific deliverables
+
+### Agent Directory
+
+All agent instructions are in [`.github/agents/`](.github/agents/):
+
+| Agent                 | File                                                                    | Responsibility               |
+| --------------------- | ----------------------------------------------------------------------- | ---------------------------- |
+| **React Agent**       | [react.agent.md](.github/agents/react.agent.md)                         | React/Next.js best practices |
+| **API Agent**         | [api.agent.md](.github/agents/api.agent.md)                             | React Query & data fetching  |
+| **Lint Agent**        | [lint.agent.md](.github/agents/lint.agent.md)                           | Code quality & formatting    |
+| **Test Agent**        | [test.agent.md](.github/agents/test.agent.md)                           | Unit & E2E testing           |
+| **Docs Agent**        | [docs.agent.md](.github/agents/docs.agent.md)                           | Documentation consistency    |
+| **Package Agent**     | [package.agent.md](.github/agents/package.agent.md)                     | Dependency management        |
+| **Quality Standards** | [quality-standards.agent.md](.github/agents/quality-standards.agent.md) | Code quality foundation      |
+
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Learn more about Next.js:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 

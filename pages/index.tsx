@@ -47,7 +47,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   try {
-    const res = await getAllPosts("posts");
+    const res = await getAllPosts();
     const posts = res?.map((p) => {
       return p.fields;
     });

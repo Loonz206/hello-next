@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,8 +10,11 @@ type PostListProps = {
 };
 
 const PostList = ({ date, title, slug, imageCover }: PostListProps) => {
-  const newDate = new Date(date).toUTCString();
-  const dateString = newDate.split(" ").slice(0, 4).join(" ");
+  const dateString = useMemo(() => {
+    const newDate = new Date(date).toUTCString();
+    return newDate.split(" ").slice(0, 4).join(" ");
+  }, [date]);
+
   return (
     <article>
       <Link href={`/blog/${slug}`} className="nav-link" passHref>

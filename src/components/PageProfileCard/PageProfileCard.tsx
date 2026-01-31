@@ -15,16 +15,14 @@ const PageProfileCard = ({ twitterHandle, jobRole }: PageProfileCardProps) => {
         <Image
           priority={true}
           src={Logo}
-          alt="logo"
+          alt="Company logo" // Improved alt text for accessibility
           className="svg"
           width={200}
           height={200}
         />
-        <br />
-        {jobRole}
+        <div className="job-role">{jobRole}</div>
       </Link>
-      <br />
-      <Link href={handle} target="_blank" passHref>
+      <Link href={handle} target="_blank" rel="noopener noreferrer" passHref>
         {twitterHandle}
       </Link>
     </div>

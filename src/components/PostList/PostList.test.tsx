@@ -20,10 +20,10 @@ describe("<PostList/>", () => {
       />,
     );
     const displayedImage = container.querySelector("img");
-    expect(displayedImage.src).toBe(
+    expect(displayedImage?.src).toBe(
       "http://localhost/_next/image?url=https%3A%2F%2Fplacehold.it%2F720%2F405&w=1920&q=75",
     );
-    expect(displayedImage.alt).toBe("a grey frame");
+    expect(displayedImage?.alt).toBe("a grey frame");
     expect(container.querySelector(".nav-link")).toBeInTheDocument();
   });
 });

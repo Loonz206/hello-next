@@ -9,14 +9,15 @@ type LayoutProps = {
 };
 
 const Layout = ({ children, links }: LayoutProps) => {
-  const [active, setActive] = useState(false);
-  const handleClick = () => {
-    return active === false ? setActive(true) : setActive(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className={active === false ? "wrap" : "wrap active"} id="wrap">
-      <Header handleClick={() => handleClick} active={active} links={links} />
+    <div id="app-container">
+      <Header handleClick={handleMenuToggle} active={menuOpen} links={links} />
       <main id="content" role="main">
         <PageProfileCard
           jobRole="Software Engineer & Internet Lover"

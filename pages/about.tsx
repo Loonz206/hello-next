@@ -45,7 +45,7 @@ const About = ({ cards }: AboutProps) => {
 
 export async function getStaticProps() {
   try {
-    const res = await getAllCards("card");
+    const res = await getAllCards();
     const cards = res;
 
     if (!cards) {
