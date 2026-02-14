@@ -7,7 +7,6 @@
   "extends": [
     "standard",
     "plugin:react/recommended",
-    "plugin:cypress/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:sonarjs/recommended-legacy",
     "plugin:@typescript-eslint/recommended",
@@ -17,7 +16,7 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "cypress", "sonarjs", "jsx-a11y"],
+  "plugins": ["react", "prettier", "sonarjs", "jsx-a11y"],
   "rules": {},
   "settings": {
     "react": {

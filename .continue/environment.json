@@ -1,0 +1,4 @@
+{
+  "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+  "NODE_ENV": "development"
+}

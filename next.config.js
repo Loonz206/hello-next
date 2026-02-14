@@ -1,14 +1,15 @@
-const path = require("path");
-const withImages = require("next-images");
-module.exports = withImages({
+import path from "node:path";
+import withImages from "next-images";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default withImages({
   swcMinify: true,
-  exclude: path.resolve(__dirname, "src/assets/svg"),
-  webpack(config, options) {
+  webpack(config) {
     return config;
   },
-});
-
-module.exports = {
+  reactStrictMode: true,
   // put the domains where images will be placed
   images: {
     // remotePatterns: ["place-hold.it", "media.giphy.com", "images.unsplash.com"],
@@ -49,4 +50,4 @@ module.exports = {
     NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN:
       process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
   },
-};
+});
