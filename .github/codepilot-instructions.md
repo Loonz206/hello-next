@@ -69,7 +69,7 @@ The agent system is organized into 5 tiers with a support layer for reusable ski
 - **Package Agent** - Dependency review, security audits
 - **Quality Standards Agent** - Foundation principles (reference-only)
 
-[→ Read Complete Tier Architecture](./.github/agents/_schema/execution-tiers.md)
+[→ Read Complete Tier Architecture](agents/_schema/execution-tiers.md)
 
 ### Reusable Skills Library
 
@@ -83,7 +83,7 @@ To reduce duplication and context consumption, shared skills are maintained in t
 
 Agents reference these via `!include()` syntax to embed shared content without duplication.
 
-[→ Read Shared Skills Documentation](./.github/agents/README.md)
+[→ Read Shared Skills Documentation](agents/README.md)
 
 ### Execution Patterns
 

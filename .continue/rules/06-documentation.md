@@ -196,10 +196,7 @@ Brief description of what this feature does and why it matters.
 
 ## See Also
 
-- [Related feature](link)
-- [Documentation](link)
-
-````
+- Related documentation and features
 
 ---
 
@@ -215,26 +212,32 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0] - 2026-01-30
 
 ### Added
+
 - New feature description
 - Another new feature
 
 ### Changed
+
 - Changed behavior description
 - Updated documentation
 
 ### Fixed
+
 - Bug fix description
 - Security fix description
 
 ### Deprecated
+
 - Deprecated feature or API
 
 ### Removed
+
 - Removed feature or API
 
 ### Security
+
 - Security-related changes
-````
+```
 
 ---
 

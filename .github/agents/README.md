@@ -59,7 +59,7 @@ Agents reference patterns for documentation and clarity:
 ```markdown
 **Execution Model**: Tier 2 - Parallel Validation
 
-See: [Parallel Execution Pattern](../_templates/parallel-execution.md)
+See: [Parallel Execution Pattern](./_templates/parallel-execution.md)
 ```
 
 This communicates:
@@ -108,7 +108,7 @@ npm run lint
 npm run tsc
 ```
 
-````
+`````
 
 ---
 
@@ -127,8 +127,9 @@ npm run tsc
 ```markdown
 ### SonarSource Rule Coverage
 
+````markdown
 !include/_shared/eslint-sonarchecks.md)
-````
+`````
 
 **Note**: Each agent currently duplicates this section. By using `!include()`, update once = update everywhere.
 
@@ -436,5 +437,5 @@ COMPREHENSIVE TOTAL:    8,413 lines (existing 5,897 + new 2,516)
 
 - Full architecture: [Execution Tiers](_schema/execution-tiers.md)
 - Agent structure: [Frontmatter Schema](_schema/agent-frontmatter-schema.yaml)
-- Patterns: [Templates](_templates/README.md) - see subdirectory
+- Patterns: [Templates](_templates/) - see subdirectory
 - Skills: [Shared Skills](_shared/) - see subdirectory
