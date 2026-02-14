@@ -59,7 +59,7 @@ describe("Header", () => {
       <Header links={links} active={false} handleClick={handleClick} />,
     );
 
-    const hamburger = getByRole("button", { name: "" });
+    const hamburger = getByRole("button", { name: "Toggle navigation menu" });
     await user.click(hamburger);
 
     expect(handleClick).toHaveBeenCalled();

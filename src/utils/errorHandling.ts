@@ -83,9 +83,10 @@ export async function withErrorHandling<T>(
  */
 export function getSeverityForError(error: unknown): ErrorSeverity {
   if (error instanceof Error) {
-    if (error.message.includes("not found")) return ErrorSeverity.MEDIUM;
-    if (error.message.includes("timeout")) return ErrorSeverity.HIGH;
-    if (error.message.includes("authentication")) return ErrorSeverity.HIGH;
+    const message = error.message.toLowerCase();
+    if (message.includes("not found")) return ErrorSeverity.MEDIUM;
+    if (message.includes("timeout")) return ErrorSeverity.HIGH;
+    if (message.includes("authentication")) return ErrorSeverity.HIGH;
   }
   return ErrorSeverity.MEDIUM;
 }

@@ -48,7 +48,7 @@ describe("<PostList/>", () => {
       />,
     );
     expect(getByText("My First Post")).toBeInTheDocument();
-    expect(getByText(/Wed Jul 05 2023/)).toBeInTheDocument();
+    expect(getByText(/Thu, 06 Jul 2023/)).toBeInTheDocument();
   });
 
   it("should have correct navigation link", () => {
