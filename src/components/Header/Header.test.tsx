@@ -1,4 +1,5 @@
-import { render, cleanup, waitFor } from "@testing-library/react";
+import { render, cleanup, waitFor, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Header from "./Header";
 
@@ -47,5 +48,47 @@ describe("Header", () => {
     );
     expect(navLinks[0]).toHaveAttribute("href", "/");
     expect(navLinks[1]).toHaveAttribute("href", "/about");
+  });
+
+  test("calls handleClick when menu not active", async () => {
+    const links = [{ id: 0, name: "home", path: "/" }];
+    const handleClick = jest.fn();
+    const user = userEvent.setup();
+
+    const { getByRole } = render(
+      <Header links={links} active={false} handleClick={handleClick} />,
+    );
+
+    const hamburger = getByRole("button", { name: "" });
+    await user.click(hamburger);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  test("closes menu when clicking nav link while menu is active", async () => {
+    const links = [{ id: 0, name: "home", path: "/" }];
+    const handleClick = jest.fn();
+    const user = userEvent.setup();
+
+    render(<Header links={links} active={true} handleClick={handleClick} />);
+
+    const homeLink = screen.getByText("home");
+    await user.click(homeLink);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  test("does not close menu when clicking nav link while menu is inactive", async () => {
+    const links = [{ id: 0, name: "home", path: "/" }];
+    const handleClick = jest.fn();
+    const user = userEvent.setup();
+
+    render(<Header links={links} active={false} handleClick={handleClick} />);
+
+    const homeLink = screen.getByText("home");
+    await user.click(homeLink);
+
+    // handleClick should only be called once (from hamburger), not from link
+    expect(handleClick).not.toHaveBeenCalled();
   });
 });

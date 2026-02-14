@@ -40,7 +40,14 @@ const customJestConfig = {
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: ["json", "text", "lcov", "text-summary", "clover"],
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
   // Make calling deprecated APIs throw helpful error messages

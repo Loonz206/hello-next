@@ -5,28 +5,36 @@ import {
   Entry,
 } from "contentful";
 
-// Check for required environment variables
-if (
-  !process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID ||
-  !process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
-) {
-  throw new Error("Contentful environment variables are not set.");
+// Lazy initialization of client - checks environment on first use
+let clientInstance: ReturnType<typeof createClient> | null = null;
+
+function getClient(): ReturnType<typeof createClient> {
+  if (!clientInstance) {
+    // Check for required environment variables
+    if (
+      !process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID ||
+      !process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
+    ) {
+      throw new Error("Contentful environment variables are not set.");
+    }
+
+    clientInstance = createClient({
+      space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+      accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+    });
+  }
+  return clientInstance;
 }
 
-const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-});
-
 // Helper to fetch entries
-async function fetchEntries<T>(
-  query: Record<string, unknown>,
-): Promise<T[] | undefined> {
+async function fetchEntries<T>(query: Record<string, unknown>): Promise<T[]> {
   try {
+    const client = getClient();
     const entries = await client.getEntries(query);
     if (entries.items) {
       return entries.items as T[];
     }
+    return [];
   } catch (error) {
     console.error("Error fetching entries:", error);
     throw error;
@@ -34,7 +42,7 @@ async function fetchEntries<T>(
 }
 
 export async function getAllPosts(): Promise<
-  Entry<EntrySkeletonType, undefined, string>[] | undefined
+  Entry<EntrySkeletonType, undefined, string>[]
 > {
   return fetchEntries<Entry<EntrySkeletonType, undefined, string>>({
     content_type: "post",
@@ -43,7 +51,7 @@ export async function getAllPosts(): Promise<
 }
 
 export async function getAllCards(): Promise<
-  Entry<EntrySkeletonType, undefined, string>[] | undefined
+  Entry<EntrySkeletonType, undefined, string>[]
 > {
   return fetchEntries<Entry<EntrySkeletonType, undefined, string>>({
     content_type: "card",
@@ -60,12 +68,12 @@ export async function getPostBySlug(
       "fields.slug[in]": slug,
     },
   );
-  return items ? items[0] : undefined;
+  return items?.[0];
 }
 
 export async function getMorePosts(
   slug: string,
-): Promise<Entry<EntrySkeletonType, undefined, string>[] | undefined> {
+): Promise<Entry<EntrySkeletonType, undefined, string>[]> {
   return fetchEntries<Entry<EntrySkeletonType, undefined, string>>({
     content_type: "post",
     limit: 3,
@@ -89,17 +97,18 @@ function parsePostSlugEntries(
   return entries?.items?.map(cb);
 }
 
-export async function getAllPostsWithSlug(): Promise<
-  { slug: string }[] | undefined
-> {
+export async function getAllPostsWithSlug(): Promise<{ slug: string }[]> {
   try {
+    const client = getClient();
     const entries = await client.getEntries({
       content_type: "post",
       select: ["fields.slug"],
     });
-    return parsePostSlugEntries(entries, (post) => ({
-      slug: post.fields.slug as string,
-    }));
+    return (
+      parsePostSlugEntries(entries, (post) => ({
+        slug: post.fields.slug as string,
+      })) ?? []
+    );
   } catch (error) {
     console.error("Error getting Entries for posts.", error);
     throw error;

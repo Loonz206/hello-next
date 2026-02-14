@@ -1,0 +1,358 @@
+# Agent Frontmatter Schema
+
+Standard YAML frontmatter structure for all executable agents.
+
+---
+
+## Template Structure
+
+```yaml
+---
+name: [Agent Display Name]
+description: [One-line summary of agent purpose]
+tools: [search, web/fetch, agent]
+agents: ["Referenced Agent 1", "Referenced Agent 2", ...]
+target: vscode
+handoffs:
+  - label: [Display label for handoff]
+    agent: [Receiving agent name]
+    prompt: [Context/reasoning for handoff]
+    send: [true/false - auto-send or user choice]
+  - label: [Label 2]
+    agent: [Agent 2]
+    prompt: [Prompt 2]
+    send: [true/false]
+---
+
+# [Agent Title]
+
+## Agent Responsibility
+
+[Mission statement - 1-2 sentences]
+
+## Activation Triggers
+
+[When this agent is invoked]
+
+## Execution Model
+
+[Which tier/pattern this agent uses]
+
+---
+
+[Rest of agent content...]
+```
+
+---
+
+## Field Definitions
+
+### Required Fields
+
+| Field | Type | Purpose | Examples |
+|-------|------|---------|----------|
+| `name` | string | Display name shown in UI | "Lint Agent", "React Agent" |
+| `description` | string | One-liner summary (max 80 chars) | "Enforce code quality - Auto-fix linting and formatting issues" |
+| `tools` | array | External tools available | `[search, web/fetch, agent]` |
+| `agents` | array | Other agents this can reference | `["Lint Agent", "Test Agent"]` |
+| `target` | string | Deployment target | `vscode` |
+
+### Optional Fields
+
+| Field | Type | Purpose | Default | Range |
+|-------|------|---------|---------|-------|
+| `handoffs` | array | Outgoing agent references | Empty | 0-10 |
+| `tags` | array | Categorization | Empty | Any |
+| `version` | string | Agent version | "1.0" | Semver |
+
+---
+
+## Handoff Object Structure
+
+Each handoff must include:
+
+```yaml
+handoffs:
+  - label: string        # Display text (required)
+    agent: string        # Receiving agent name (required)
+    prompt: string       # Context for handoff (required)
+    send: boolean        # Auto-send or wait for user? (required)
+```
+
+### Handoff Properties
+
+| Property | Type | Usage | Example |
+|----------|------|-------|---------|
+| `label` | string | UI display text | "Component Review (Parallel)" |
+| `agent` | string | Target agent name (must exist in agents list) | "React Agent" |
+| `prompt` | string | Context/reasoning passed to next agent | "Let's review components for accessibility." |
+| `send` | boolean | `true` = auto-trigger, `false` = user choice | `false` for optional |
+
+---
+
+## Standard Patterns
+
+### Tier 2 - Parallel Agents (Non-blocking)
+
+```yaml
+handoffs:
+  - label: Component Review (Parallel)
+    agent: React Agent
+    prompt: "Now let's review the React components and ensure they follow best practices."
+    send: false
+```
+
+**Key**: `send: false` indicates user can choose
+
+---
+
+### Tier 3a - Sequential Gate (Blocking)
+
+```yaml
+handoffs:
+  - label: Testing & Coverage
+    agent: Test Agent
+    prompt: "Now let's ensure comprehensive test coverage."
+    send: false
+```
+
+**Key**: Agent assumes predecessor passed
+
+---
+
+### Tier 3b - Optional Deep-Dive
+
+```yaml
+handoffs:
+  - label: Architecture Analysis (Optional)
+    agent: Architecture Agent
+    prompt: "Let's review the module structure and identify architectural improvements."
+    send: false
+```
+
+**Key**: `(Optional)` label indicates non-blocking
+
+---
+
+### Tier 4 - Loop-Back (Iterative)
+
+```yaml
+handoffs:
+  - label: Lint Validation
+    agent: Lint Agent
+    prompt: "Let's validate the refactored code for linting issues."
+    send: false
+
+  - label: Testing & Coverage
+    agent: Test Agent
+    prompt: "Now let's verify tests still pass and coverage is >80%."
+    send: false
+```
+
+**Key**: Loops back to validation agents
+
+---
+
+## Content Structure
+
+Every agent should include these sections after frontmatter:
+
+```markdown
+# [Agent Title]
+
+**Agent Responsibility**: [Mission - 1-2 sentences]
+
+**Activation Triggers**: [When invoked]
+
+**Execution Model**: [Tier + Pattern name]
+
+---
+
+## 🚀 QUICK START - DO THIS NOW
+
+[3-step quick action sequence]
+
+---
+
+## Overview
+
+[2-3 sentence summary of capabilities]
+
+---
+
+## [Section 1: Core Responsibility]
+
+[Detailed instructions]
+
+---
+
+## [Section 2: Implementation Patterns]
+
+[Code examples and guidance]
+
+---
+
+[Additional sections as needed]
+```
+
+---
+
+## Validation Rules
+
+### Name Field
+- ✅ Must contain "Agent" suffix
+- ✅ PascalCase for each word
+- ✅ Examples: "Lint Agent", "React Agent", "API Agent"
+- ❌ Don't use: "lintAgent", "Agent Lint", "Linter"
+
+### Description Field
+- ✅ Max 80 characters
+- ✅ Starts with action verb
+- ✅ No period at end
+- ✅ Examples: "Enforce code quality - Auto-fix linting and formatting issues"
+- ❌ Don't use: "This agent enforces code quality." (too long, has period)
+
+### Tools Field
+- ✅ Always `[search, web/fetch, agent]` for agent-to-agent coordination
+- ✅ Can add specifics if needed: `[search, web/fetch, agent, sonarqube]`
+- ❌ Don't use: Empty array or missing
+
+### Agents Field
+- ✅ List referenced agents (those that this agent calls)
+- ✅ Names must exactly match other agent `name` fields
+- ✅ Examples: `["Lint Agent", "React Agent", "Test Agent"]`
+- ❌ Don't use: Typos or non-existent agent names
+
+### Handoffs Field
+- ✅ All handoffs must reference agents from `agents` list
+- ✅ Labels should indicate pattern: "(Parallel)", "(Optional)", etc.
+- ✅ Prompts should explain reasoning
+- ✅ Examples:
+  ```yaml
+  handoffs:
+    - label: Component Review (Parallel)
+      agent: React Agent
+      prompt: "Now let's review the React components."
+      send: false
+  ```
+- ❌ Don't use: Handoffs to non-existent agents, unclear labels
+
+---
+
+## Consistency Checklist
+
+Before committing an agent:
+
+- [ ] Frontmatter valid YAML
+- [ ] Name ends with "Agent"
+- [ ] Description ≤ 80 chars
+- [ ] Tools array includes `search, web/fetch, agent`
+- [ ] Agents list matches handoff references
+- [ ] All handoff agents exist in agents list
+- [ ] Handoff labels indicate pattern type
+- [ ] No duplicate handoff labels
+- [ ] Handoff prompts are helpful context
+- [ ] At least one handoff for non-entry agents
+- [ ] QUICK START section exists
+- [ ] Overview section exists
+- [ ] Execution Model clearly stated
+
+---
+
+## Examples
+
+### Minimal Valid Agent
+
+```yaml
+---
+name: Example Agent
+description: Brief description of purpose
+tools: [search, web/fetch, agent]
+agents: ["Lint Agent"]
+target: vscode
+handoffs:
+  - label: Next Step
+    agent: Lint Agent
+    prompt: "Context for next agent."
+    send: false
+---
+
+# 📋 Example Agent Instructions
+
+**Agent Responsibility**: Do something specific and
+well-defined.
+
+**Activation Triggers**: When user requests X
+**Execution Model**: Entry point or Parallel/Sequential
+
+---
+
+## 🚀 QUICK START - DO THIS NOW
+
+### 1. Do first thing
+```bash
+command
+```
+
+### 2. Verify
+```bash
+command
+```
+
+### 3. Confirm
+```bash
+command
+```
+```
+
+### Complex Agent (with multiple patterns)
+
+```yaml
+---
+name: Complex Agent
+description: Multi-step analysis with optional deep-dives
+tools: [search, web/fetch, agent]
+agents:
+  ["Lint Agent", "Test Agent", "Architecture Agent",
+   "Performance Agent", "Documentation Agent"]
+target: vscode
+handoffs:
+  # Sequential gate
+  - label: Lint Validation
+    agent: Lint Agent
+    prompt: "Validate the code changes."
+    send: false
+
+  # Optional deep-dives (parallel)
+  - label: Architecture Analysis (Optional)
+    agent: Architecture Agent
+    prompt: "Deep-dive into module structure."
+    send: false
+
+  - label: Performance Analysis (Optional)
+    agent: Performance Agent
+    prompt: "Analyze bundle and rendering performance."
+    send: false
+
+  # Documentation
+  - label: Update Documentation
+    agent: Documentation Agent
+    prompt: "Document the changes."
+    send: false
+---
+```
+
+---
+
+## Migration Guide
+
+### From Old Format (if any)
+
+If migrating agents to this schema:
+
+1. Add/update frontmatter fields
+2. Ensure all agents in `agents` list are referenced in handoffs
+3. Verify handoff labels follow pattern convention
+4. Add execution model statement
+5. Ensure QUICK START exists
+6. Test all handoff references work

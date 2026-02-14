@@ -1,5 +1,42 @@
 #!/usr/bin/env node
 
+/**
+ * Sync Script for Agents → Continue IDE Rules
+ *
+ * This script reads all .github/agents/*.agent.md files and generates
+ * corresponding .continue/rules/NN-*.md files for the Continue IDE.
+ *
+ * INCLUDE DIRECTIVE PROCESSING
+ * ============================
+ * Agents can use !include(_shared/filename.md) syntax to reference
+ * shared skills and reduce duplication. This sync script:
+ *
+ * 1. Detects !include() directives in agent files
+ * 2. Resolves includes relative to .github/agents/ directory
+ * 3. Expands includes to full content before writing to .continue/rules/
+ * 4. Logs which includes were processed
+ *
+ * Example:
+ *   Agent source: !include(_shared/eslint-sonarchecks.md)
+ *   After sync: [Full content of eslint-sonarchecks.md inlined]
+ *   Result: Continue rule has complete content ready to use
+ *
+ * This ensures:
+ * - Source agents stay lean (use includes)
+ * - Continue rules have full content (includes expanded)
+ * - No duplication in generated rules
+ * - Continue IDE gets complete rules without further processing
+ *
+ * Features:
+ * - Process includes after YAML frontmatter parsing
+ * - Regex pattern: /!include\(_shared\/([^)]+\.md)\)/g
+ * - Resolves from .github/agents/_shared/ directory
+ * - Handles missing files gracefully with warnings
+ * - Processes recursively (includes can reference other includes)
+ * - Prevents infinite recursion by tracking processed files
+ * - Logs include processing for transparency
+ */
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -61,6 +98,75 @@ const AGENT_MAPPING = {
   },
   "research.agent.md": { num: "08", name: "research", globs: ["**/*"] },
 };
+
+/**
+ * Recursively expand !include() directives in content
+ * Processes includes like: !include(_shared/filename.md)
+ * @param {string} content - Content with potential include directives
+ * @param {string} baseDir - Base directory for resolving relative paths (e.g., .github/agents)
+ * @param {Set<string>} processedFiles - Track processed files to prevent infinite recursion
+ * @param {Array<string>} processLog - Log of processed includes for output
+ * @returns {string} Content with all includes expanded
+ */
+function expandIncludes(
+  content,
+  baseDir,
+  processedFiles = new Set(),
+  processLog = [],
+) {
+  const includeRegex = /!include\(_shared\/([^)]+\.md)\)/g;
+  let expandedContent = content;
+  let match;
+
+  while ((match = includeRegex.exec(content)) !== null) {
+    const includeFile = match[1];
+    const includePath = path.join(baseDir, "_shared", includeFile);
+    const includeRelativePath = path.relative(process.cwd(), includePath);
+
+    // Prevent infinite recursion
+    if (processedFiles.has(includePath)) {
+      console.warn(`⚠️  Circular include detected: ${includeRelativePath}`);
+      continue;
+    }
+
+    // Check if file exists
+    if (!fs.existsSync(includePath)) {
+      console.warn(`⚠️  Include file not found: ${includeRelativePath}`);
+      expandedContent = expandedContent.replace(
+        match[0],
+        `<!-- Include not found: ${includeFile} -->`,
+      );
+      continue;
+    }
+
+    try {
+      processedFiles.add(includePath);
+      let includeContent = fs.readFileSync(includePath, "utf8").trim();
+
+      // Recursively expand any includes within this file
+      includeContent = expandIncludes(
+        includeContent,
+        baseDir,
+        processedFiles,
+        processLog,
+      );
+
+      // Replace the include directive with the expanded content
+      expandedContent = expandedContent.replace(match[0], includeContent);
+      processLog.push(includeFile);
+    } catch (error) {
+      console.warn(
+        `⚠️  Error reading include file ${includeRelativePath}: ${error.message}`,
+      );
+      expandedContent = expandedContent.replace(
+        match[0],
+        `<!-- Error reading: ${includeFile} -->`,
+      );
+    }
+  }
+
+  return expandedContent;
+}
 
 /**
  * Extract frontmatter and content from agent markdown file
@@ -127,6 +233,14 @@ function createContinueRule(agentName, agentContent, mapping) {
   const title = frontmatter.name || agentName.replace(".agent.md", "");
   const description = frontmatter.description || "Rules extracted from agent";
 
+  // Expand includes in the body content
+  const processLog = [];
+  const expandedBody = expandIncludes(body, AGENTS_DIR, new Set(), processLog);
+
+  if (processLog.length > 0) {
+    console.log(`  📦 Includes expanded: ${processLog.join(", ")}`);
+  }
+
   // Create rule file frontmatter
   const ruleFrontmatter = `---
 name: ${title}
@@ -136,8 +250,8 @@ description: ${description}
 ---
 `;
 
-  // Combine frontmatter and body (removing agent-specific elements)
-  const ruleContent = ruleFrontmatter + "\n" + body;
+  // Combine frontmatter and body (with expanded includes)
+  const ruleContent = ruleFrontmatter + "\n" + expandedBody;
 
   return ruleContent;
 }
