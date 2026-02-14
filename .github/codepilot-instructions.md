@@ -33,6 +33,76 @@ All agents are available as subagents through the `agents` field in their frontm
 
 ---
 
+## 🏗️ Agent Architecture & Abstraction Layers
+
+The agent system is organized into 5 tiers with a support layer for reusable skills and patterns:
+
+### Tier Structure
+
+**Tier 1**: Entry Point
+
+- **Research Agent** - Intelligent routing and context analysis
+
+**Tier 2**: Parallel Validation (simultaneous)
+
+- **Lint Agent** - Code quality, formatting, syntax
+- **React Agent** - Component patterns, hooks, accessibility
+- **API Agent** - Data fetching, React Query patterns
+
+**Tier 3a**: Sequential Testing (depends on Tier 2)
+
+- **Test Agent** - Unit tests, E2E tests, coverage enforcement
+
+**Tier 3b**: Optional Deep-Dive Analysis (user-requested)
+
+- **Architecture Agent** - Module structure, dependencies, scalability
+- **Performance Agent** - Bundle size, render performance, metrics
+
+**Tier 4**: Implementation & Final
+
+- **Refactoring Agent** - Applies improvements, loop-back validation
+- **Documentation Agent** - Updates docs, feature documentation
+
+**Post-Deployment**: Monitoring
+
+- **Technical Debt Agent** - Summary analysis, improvement roadmap
+- **Package Agent** - Dependency review, security audits
+- **Quality Standards Agent** - Foundation principles (reference-only)
+
+[→ Read Complete Tier Architecture](agents/_schema/execution-tiers.md)
+
+### Reusable Skills Library
+
+To reduce duplication and context consumption, shared skills are maintained in the **`_shared/` directory**:
+
+- **quickstart-template.md** - Standard 3-step quick start pattern (all agents)
+- **eslint-sonarchecks.md** - ESLint & SonarSource rules reference (Lint, React, Quality Standards)
+- **testing-frameworks.md** - Jest, React Testing Library, Cypress reference (Test, Refactoring)
+- **npm-commands-reference.md** - Centralized npm script definitions (all agents)
+- **typescript-strict.md** - TypeScript strict mode patterns (Lint, React, Quality Standards)
+
+Agents reference these via `!include()` syntax to embed shared content without duplication.
+
+[→ Read Shared Skills Documentation](agents/README.md)
+
+### Execution Patterns
+
+Standard patterns documented in **`_templates/` directory**:
+
+- **parallel-execution.md** - How Tier 2 agents run simultaneously
+- **sequential-gating.md** - How Tier 3a gates depend on Tier 2
+- **optional-deepdive.md** - How Tier 3b agents are user-triggered
+- **loop-back-validation.md** - How Tier 4 validations iterate
+
+### Schema Definitions
+
+Structure and validation rules in **`_schema/` directory**:
+
+- **agent-frontmatter-schema.yaml** - Standard YAML frontmatter (name, description, agents, handoffs)
+- **execution-tiers.md** - Complete 5-tier architecture definition
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Open Copilot Chat

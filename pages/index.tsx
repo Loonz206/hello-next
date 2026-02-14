@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { GetStaticPropsResult } from "next";
 import Layout from "../src/components/Layout/Layout";
 import PostList from "../src/components/PostList/PostList";
 import { links } from "../src/utils/links";
@@ -45,14 +46,14 @@ const HomePage = ({ posts }: HomePageProps) => {
 
 export default HomePage;
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<HomePageProps>
+> {
   try {
     const res = await getAllPosts();
-    const posts = res?.map((p) => {
-      return p.fields;
-    });
+    const posts = res.map((p) => p.fields as HomePageProps["posts"][number]);
 
-    if (!posts) {
+    if (!posts || posts.length === 0) {
       return {
         notFound: true,
       };
@@ -64,7 +65,7 @@ export async function getStaticProps() {
       },
     };
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching posts:", error);
     return {
       notFound: true,
     };

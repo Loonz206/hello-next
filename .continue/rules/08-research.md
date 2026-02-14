@@ -88,12 +88,12 @@ Analysis:
 - Testing: Need unit tests (components) + E2E tests (user flow)
 - Documentation: Need JSDoc + README update
 
-Handoff: Start with "Research Agent"
-├─ Then "React Agent" (design components)
-├─ Then "API Agent" (integrate with Contentful)
-├─ Then "Lint Agent" (ensure code quality)
-├─ Then "Test Agent" (write comprehensive tests)
-└─ Then "Docs Agent" (document changes)
+Handoff: Start with Research Agent
+├─ Then React Agent (design components)
+├─ Then API Agent (integrate with Contentful)
+├─ Then Lint Agent (ensure code quality)
+├─ Then Test Agent (write comprehensive tests)
+└─ Then Docs Agent (document changes)
 ```
 
 ---
@@ -318,8 +318,6 @@ This project enforces:
 - **Documentation**: JSDoc + Markdown linting
 - **Accessibility**: WCAG 2.1 AA compliance
 - **Performance**: Core Web Vitals optimization
-
-See [Quality Standards](./quality-standards.agent.md) for complete reference.
 
 ---
 

@@ -104,25 +104,7 @@ npm run validate          # Parallel execution of format + lint check
 - Type safety issues (with TypeScript plugin)
 - React hooks issues
 
-### Configuration Files
-
-See `.eslintrc.json`:
-
-- SonarJS plugin (328 SonarSource rules)
-- React plugin with hooks validation
-- TypeScript parser & support
-- JSX Accessibility (a11y) rules
-- Cypress E2E test support
-
-### SonarSource Rule Coverage
-
-| Category          | Rules | Examples                                        |
-| ----------------- | ----- | ----------------------------------------------- |
-| Bugs              | 83    | Infinite loops, typos in conditions             |
-| Vulnerabilities   | 31    | SQL injection, XSS, hardcoded secrets           |
-| Security Hotspots | 62    | User input handling, authentication checks      |
-| Code Smells       | 245   | Duplicated code, unused variables, long methods |
-| Quick Fixes       | 70+   | Auto-fixable rules with one-click solutions     |
+!include(\_shared/eslint-sonarchecks.md)
 
 ---
 
@@ -257,48 +239,7 @@ function MyComponent({ shouldFetch }) {
 
 ## 4. TypeScript Strict Mode
 
-### Type Safety
-
-```typescript
-// ❌ WRONG: Any type bypasses type safety
-function processData(data: any): any {
-  return data.map((x) => x * 2);
-}
-
-// ✅ CORRECT: Specify proper types
-function processData(data: number[]): number[] {
-  return data.map((x) => x * 2);
-}
-```
-
-### Null/Undefined Safety
-
-```typescript
-// ❌ WRONG: Dangerous null access
-function getLength(str: string | null) {
-  return str.length; // str might be null!
-}
-
-// ✅ CORRECT: Handle nullability
-function getLength(str: string | null) {
-  return str?.length ?? 0; // Optional chaining + nullish coalescing
-}
-```
-
-### Required Properties
-
-```typescript
-// ❌ WRONG: Missing required properties
-interface User {
-  name: string;
-  email: string;
-}
-
-const user: User = { name: "John" }; // Missing email!
-
-// ✅ CORRECT: All required properties provided
-const user: User = { name: "John", email: "john@example.com" };
-```
+!include(\_shared/typescript-strict.md)
 
 ---
 
