@@ -154,9 +154,11 @@ The `deploy` job uses the [Vercel CLI](https://vercel.com/docs/cli) to build and
 
 #### How it works
 
-1. **Pull environment info** – `vercel pull --yes --environment=production` fetches project settings and environment variables from Vercel.
-2. **Build** – `vercel build --prod` compiles the Next.js application into Vercel's output format.
-3. **Deploy** – `vercel deploy --prebuilt --prod` uploads the pre-built artifacts to Vercel's CDN.
+1. **Pull environment info** – `vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}` fetches project settings and environment variables from Vercel.
+2. **Build** – `vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}` compiles the Next.js application into Vercel's output format.
+3. **Deploy** – `vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}` uploads the pre-built artifacts to Vercel's CDN.
+
+> In GitHub Actions, each Vercel CLI command passes `--token=${{ secrets.VERCEL_TOKEN }}` to authenticate using the `VERCEL_TOKEN` secret. When running these commands locally, either log in with `vercel login` or provide your own token instead.
 
 #### Required Secrets
 
