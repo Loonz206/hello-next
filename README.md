@@ -112,6 +112,66 @@ All agent instructions are in [`.github/agents/`](.github/agents/):
 | **Package Agent**     | [package.agent.md](.github/agents/package.agent.md)                     | Dependency management        |
 | **Quality Standards** | [quality-standards.agent.md](.github/agents/quality-standards.agent.md) | Code quality foundation      |
 
+## CI/CD Pipeline
+
+### GitHub Actions Workflows
+
+The repository uses a single workflow file located at [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
+#### Triggers
+
+| Event          | Branches / Conditions                          |
+| -------------- | ---------------------------------------------- |
+| `push`         | `main` branch only                             |
+| `pull_request` | All PRs (opened, synchronize, reopened events) |
+
+#### Jobs Overview
+
+The workflow is composed of four jobs that run in sequence:
+
+```
+build ──┬── lint ──┐
+        │          ├── deploy
+        └── test ──┘
+```
+
+| Job      | Depends On     | What it does                                                                                                                                                                                 |
+| -------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `build`  | —              | Checks out the code, restores the `node_modules` cache, sets up Node.js 22, and runs `npm ci` to install dependencies.                                                                       |
+| `lint`   | `build`        | Installs dependencies with `npm install`, then runs `npm run lint` (ESLint), `npm run lint:md` (custom Markdown validator via `scripts/validate-markdown.js`), and `npm run format` (Prettier in `--write` mode to auto-format files). |
+| `test`   | `build`        | Installs dependencies with `npm install`, then runs `npm run coverage` (Jest with coverage) and uploads the report to [Codecov](https://codecov.io/gh/Loonz206/hello-next).                  |
+| `deploy` | `lint`, `test` | Deploys to Vercel (production). Skipped when the commit message contains `[skip ci]`. See [Vercel Deployment](#vercel-deployment) below.                                                     |
+
+#### Caching
+
+All jobs share a `node_modules` cache keyed on the OS and the hash of `package-lock.json`. This speeds up dependency installation across jobs and improves overall pipeline performance.
+
+---
+
+### Vercel Deployment
+
+The `deploy` job uses the [Vercel CLI](https://vercel.com/docs/cli) to build and deploy the application to production.
+
+#### How it works
+
+1. **Pull environment info** – `vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}` fetches project settings and environment variables from Vercel.
+2. **Build** – `vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}` compiles the Next.js application into Vercel's output format.
+3. **Deploy** – `vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}` uploads the pre-built artifacts to Vercel's CDN.
+
+> In GitHub Actions, each Vercel CLI command passes `--token=${{ secrets.VERCEL_TOKEN }}` to authenticate using the `VERCEL_TOKEN` secret. When running these commands locally, either log in with `vercel login` or provide your own token instead.
+
+#### Required Secrets
+
+Add the following secret to the repository's **Settings → Secrets and variables → Actions** page:
+
+| Secret name    | Description                                                                                                          |
+| -------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `VERCEL_TOKEN` | A personal access token generated from the [Vercel dashboard](https://vercel.com/account/tokens) (Account → Tokens). |
+
+> **Note:** The deploy job is skipped when the head commit message contains `[skip ci]`, which is useful for documentation-only changes that do not require a new deployment.
+
+---
+
 ## Learn More
 
 Learn more about Next.js:
