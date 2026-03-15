@@ -135,12 +135,12 @@ build ──┬── lint ──┐
         └── test ──┘
 ```
 
-| Job      | Depends On     | What it does                                                                                                                             |
-| -------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `build`  | —              | Checks out the code, restores the `node_modules` cache, sets up Node.js 22, and runs `npm ci` to install dependencies.                   |
-| `lint`   | `build`        | Runs `npm run lint` (ESLint), `npm run lint:md` (Markdown lint), and `npm run format` (Prettier) to enforce code style.                  |
-| `test`   | `build`        | Runs `npm run coverage` (Jest with coverage) and uploads the report to [Codecov](https://codecov.io/gh/Loonz206/hello-next).             |
-| `deploy` | `lint`, `test` | Deploys to Vercel (production). Skipped when the commit message contains `[skip ci]`. See [Vercel Deployment](#vercel-deployment) below. |
+| Job      | Depends On     | What it does                                                                                                                                                                                 |
+| -------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `build`  | —              | Checks out the code, restores the `node_modules` cache, sets up Node.js 22, and runs `npm ci` to install dependencies.                                                                       |
+| `lint`   | `build`        | Installs dependencies with `npm install`, then runs `npm run lint` (ESLint), `npm run lint:md` (custom Markdown validator via `scripts/validate-markdown.js`), and `npm run format` (Prettier in `--write` mode to auto-format files). |
+| `test`   | `build`        | Installs dependencies with `npm install`, then runs `npm run coverage` (Jest with coverage) and uploads the report to [Codecov](https://codecov.io/gh/Loonz206/hello-next).                  |
+| `deploy` | `lint`, `test` | Deploys to Vercel (production). Skipped when the commit message contains `[skip ci]`. See [Vercel Deployment](#vercel-deployment) below.                                                     |
 
 #### Caching
 
