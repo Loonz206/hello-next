@@ -144,7 +144,7 @@ build ──┬── lint ──┐
 
 #### Caching
 
-All jobs share a `node_modules` cache keyed on the OS and the hash of `package-lock.json`. This avoids redundant installs across jobs and speeds up the overall pipeline.
+All jobs share a `node_modules` cache keyed on the OS and the hash of `package-lock.json`. This speeds up dependency installation across jobs and improves overall pipeline performance.
 
 ---
 
